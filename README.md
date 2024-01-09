@@ -1,1 +1,1 @@
-# ReceiptApp
+# RecipesApp
