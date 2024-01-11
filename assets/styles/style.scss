@@ -1,7 +1,21 @@
-@import './templatescommon';
-@import './header';
-@import './filter';
-@import './main';
-@import './footer';
-@import './recipepage';
+@import "./vars";
+@import "./templatescommon";
+@import "./header";
+@import "./filter";
+@import "./main";
+@import "./footer";
+@import "./recipepage";
 
+
+@font-face {
+  src: url(../fonts/Nunito-Regular.ttf);
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  src: url(../fonts/Nunito-SemiBold.ttf);
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+}
