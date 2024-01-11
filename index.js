@@ -14,12 +14,4 @@ async function getData() {
 }
 document.addEventListener("DOMContentLoaded", getData);
 
-const choiceHeader=document.querySelector('.choice__header');
-const choiceContainer=document.getElementById('choice__container');
-const changeClass=()=>{
-  choiceContainer.classList.toggle('choice__container');
-  choiceContainer.classList.toggle('choice__container_closed');
-}
-console.log(changeClass());
-choiceHeader.addEventListener('mouseover', changeClass);
 

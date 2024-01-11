@@ -1,74 +1,29 @@
-.filter__container{
+.filter__container {
+  display: flex;
+  // gap: 10px;
+  justify-content: center;
+  font-family: $fontmain;
 }
-.filter__header{
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: rgb(247, 246, 246);
-position: relative;
+.nav-dropdown_main {
+  width: 130px;
+  height: 40px;
+  border-radius: 50px;
+  font-family: $fontmain;
+  font-size: 16px;
+  border: none;
+  background-color: $bgcolorwhite;
 }
-.choice__header{
-text-align: center;
-
+.nav-dropdown_main:hover {
+  color: $colortextlight;
+  background-color: $bgcolororange;
 }
-#deleteButton{
-width: 20px;
-height: 20px;
-border-radius: 50%;
-text-align: center;
-border: none;
+.dropdown-child {
+  display: flex;
+  flex-direction: column;
+  // margin-left: 20%;
 }
-.choice__container{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    max-width: 65%;
-    left: 30%;
-    gap: 10px;
-    border-radius: 10px;
-    background-color: rgb(247, 246, 246);
-}
-.choice__container_closed{
-    display: none;
-}
-.choice__block{
-display: flex;
-gap: 10px;
-justify-content: space-between;
-}
-.input{
-    width: 50px;
-    border-radius: 5px;
-    border: 1px solid gray;
-}
-.choice__block_part{
-display: flex;
-flex-direction: column;
-}
-.select__block{
-    display: flex;
-    gap: 5px;
-}
-.select__part{
-    display: flex;
-    flex-direction: column;   
-}
-.buttons__block{
-display: flex;
-justify-content: space-between;
-}
-.clearButton{
-    width: 100px;
-    height: 25px;
-    border-radius: 5px;
-    border: none;
-}
-.chooseButton{
-    width: 100px;
-    height: 25px;
-    border-radius: 5px;
-    border: none;
-background-color: rgb(68, 122, 68);
-color: white;
-font-family: $fontmain;
+.input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid gray;
 }
