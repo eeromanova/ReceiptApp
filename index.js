@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", getData);
 
 const filterDropdowns=document.querySelectorAll('.filter-dropdown');
 const filterDropdownButtons=document.querySelectorAll('.filter-dropdown_main');
-const dropdownItems=document.querySelectorAll('.dropdown-child');
 
 
 
@@ -33,4 +32,21 @@ filterDropdowns.forEach((elem)=>{
   })
 })
 
+const minCal=document.getElementById('minCal');
+const maxCal=document.getElementById('maxCal');
 
+minCal.addEventListener('input', ()=>{
+  localStorage.setItem('minCal', JSON.stringify(minCal.value));
+})
+maxCal.addEventListener('input', ()=>{
+  localStorage.setItem('maxCal', JSON.stringify(maxCal.value));
+})
+
+const clearButton=document.querySelector('.clearButton');
+
+const clearStorage=()=>{
+  localStorage.removeItem('maxCal');
+  localStorage.removeItem('minCal');
+}
+
+clearButton.addEventListener('click', clearStorage);
