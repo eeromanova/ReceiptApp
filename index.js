@@ -1,4 +1,10 @@
 let result='{}';
+let checkboxesAllergy = [];
+let checkboxesDiet = [];
+let calories = {
+  from: "",
+  to: "",
+};
 async function getData() {
   try {
     const response = await fetch(
@@ -49,14 +55,11 @@ const inputs = document.querySelectorAll("input");
 const clearButton = document.querySelector(".clearButton");
 
 const allergyFilter = document.getElementById("allergy__box");
-let checkboxesAllergy = [];
+
 const dietFilter = document.getElementById("diet__box");
-let checkboxesDiet = [];
+
 const caloriesFilter = document.getElementById("calories__box");
-let calories = {
-  from: "",
-  to: "",
-};
+
 
 allergyFilter.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
