@@ -1,4 +1,4 @@
-let result='{}';
+let result = "{}";
 let checkboxesAllergy = [];
 let checkboxesDiet = [];
 let calories = {
@@ -14,6 +14,7 @@ async function getData() {
       result = await response.json();
       console.log(result);
       console.log(result.hits[3].recipe.label);
+      return result;
     } else {
       console.log(`Ошибка: ${response.status}`);
     }
@@ -163,6 +164,7 @@ const clearFilters = () => {
 };
 
 clearButton.addEventListener("click", clearFilters);
+
 //Переменные для работы с input в части header.
 let recipe = [];
 let headerInput = document.querySelector(".header__container_input");
@@ -209,7 +211,11 @@ function handleInputEvent() {
       itemDiv.style.backgroundColor = "#ffab08";
       itemDiv.textContent = elem;
       itemDiv.onclick = function () {
-        headerInput.value = this.textContent; // Обновляем значение поля ввода
+        headerInput.value = this.textContent;
+        suggestionsDiv.remove("itemDiv");
+        filterContainer.style.display = "flex";
+
+        // Обновляем значение поля ввода
       };
       suggestionsDiv.appendChild(itemDiv);
     });
