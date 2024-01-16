@@ -24,6 +24,7 @@ async function getData() {
       result = await response.json();
       console.log(result);
       console.log(result.hits[3].recipe.label);
+      return result;
     } else {
       console.log(`Ошибка: ${response.status}`);
     }
