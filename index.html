@@ -2,14 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/styles/normalize.css" />
-    <link rel="stylesheet" href="assets/styles/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="assets/styles/normalize.css"/>
+    <link rel="stylesheet" href="assets/styles/style.css"/>
     <!-- Здесь будет подключение иконки -->
     <title>Recipes and Food</title>
   </head>
   <body>
-    <header></header>
+    <header class="header">
+      <div class="header__container_picturesLogo">
+        <img src="assets/img_header/pizza.png" alt="picrure pizza" class="header__container_pizza">
+        <div class="phrase">
+          <p class="header__container_tittleFirst"> Recipes are just</p>
+          <p class="header__container_tittleSecond">a click away!</p> 
+        </div>
+      </div>
+
+      <div class="header__container_search">
+        
+        <h1 class="header__container_tittle">YumYum</h1>
+        <img src="assets/img_header/logofolk.png" class="header__container_img">
+      <!-- Следующ div не отображается в десктопной версии -->
+        <div class="phrase_mobile-version">
+          <p class="header__container_tittleFirst"> Recipes are just</p>
+          <p class="header__container_tittleSecond">a click away!</p> 
+        </div>
+        <input type="search" placeholder="Find the best recipes on the Internet...
+        " class="header__container_input">
+        
+        <button type="submit" class="header__container_btn">Search</button>
+      </div>
+      <div class="orderRecipes"></div>
+    </header>
     <main>
       <section class="filter__container">
         <div class="filter-dropdown">
