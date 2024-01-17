@@ -1,156 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="assets/styles/normalize.css"/>
-    <link rel="stylesheet" href="assets/styles/style.css"/>
-    <!-- Здесь будет подключение иконки -->
-    <title>Recipes and Food</title>
-  </head>
-  <body>
-    <header class="header">
-      <div class="header__container_picturesLogo">
-        <img src="assets/img_header/pizza.png" alt="picrure pizza" class="header__container_pizza">
-        <div class="phrase">
-          <p class="header__container_tittleFirst"> Recipes are just</p>
-          <p class="header__container_tittleSecond">a click away!</p> 
-        </div>
-      </div>
 
-      <div class="header__container_search">
-        
-        <h1 class="header__container_tittle">YumYum</h1>
-        <img src="assets/img_header/logofolk.png" class="header__container_img">
-      <!-- Следующ div не отображается в десктопной версии -->
-        <div class="phrase_mobile-version">
-          <p class="header__container_tittleFirst"> Recipes are just</p>
-          <p class="header__container_tittleSecond">a click away!</p> 
-        </div>
-        <input type="search" placeholder="Find the best recipes on the Internet...
-        " class="header__container_input">
-        
-        <button type="submit" class="header__container_btn">Search</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/styles/normalize.css" />
+  <link rel="stylesheet" href="assets/styles/style.css" />
+  <link rel="icon" href="./assets/img/favicon.png" type="img/png" />
+  <title>Recipes and Food</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container_picturesLogo">
+      <img src="assets/img_header/pizza.png" alt="picrure pizza" class="header__container_pizza">
+      <div class="phrase">
+        <p class="header__container_tittleFirst"> Recipes are just</p>
+        <p class="header__container_tittleSecond">a click away!</p>
       </div>
-      <div class="orderRecipes"></div>
-    </header>
-    <main>
-      <section class="filter__container">
-        <div class="filter-dropdown">
-          <button class="button filter-dropdown_main" id="calories">Calories ▾</button>
-          <div class="dropdown-child dropdown-child_closed" id="calories__box">
-            <div class="dropdown-child_item">
-              <label for="minCal"
-                >From
-                <input type="number" id="minCal" class="input" min="0"/>
-              </label>
-            </div>
-            <div class="dropdown-child_item">
-              <label for="maxCal"
-                >To
-                <input type="number" id="maxCal" class="input" min="0"/>
-              </label>
-            </div>
+    </div>
+
+    <div class="header__container_search">
+
+      <h1 class="header__container_tittle">YumYum</h1>
+      <img src="assets/img_header/logofolk.png" class="header__container_img">
+      <!-- Следующ div не отображается в десктопной версии -->
+      <div class="phrase_mobile-version">
+        <p class="header__container_tittleFirst"> Recipes are just</p>
+        <p class="header__container_tittleSecond">a click away!</p>
+      </div>
+      <input type="search" placeholder="Find the best recipes on the Internet...
+        " class="header__container_input">
+
+      <button type="submit" class="header__container_btn">Search</button>
+    </div>
+    <div class="orderRecipes"></div>
+  </header>
+  <main>
+    <section class="filter__container">
+      <div class="filter-dropdown">
+        <button class="button filter-dropdown_main" id="calories">Calories ▾</button>
+        <div class="dropdown-child dropdown-child_closed" id="calories__box">
+          <div class="dropdown-child_item">
+            <label for="minCal">From
+              <input type="number" id="minCal" class="input" min="0" />
+            </label>
+          </div>
+          <div class="dropdown-child_item">
+            <label for="maxCal">To
+              <input type="number" id="maxCal" class="input" min="0" />
+            </label>
           </div>
         </div>
-        <div class="filter-dropdown">
-          <button class="button filter-dropdown_main" id="diet">Diet ▾</button>
-          <div class="dropdown-child dropdown-child_closed" id="diet__box">
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Vegeterian" value="Vegeterian" />
-              <label for="Vegeterian">Vegeterian</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Vegan" value="Vegan" />
-              <label for="Vegan">Vegan</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Paleo" value="Paleo" />
-              <label for="Paleo">Paleo</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="High-Fiber" value="High-Fiber" />
-              <label for="High-Fiber">High-Fiber</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="High-Protein" value="High-Protein" />
-              <label for="High-Protein">High-Protein</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Low-Carb" value="Low-Carb" />
-              <label for="Low-Carb">Low-Carb</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Low-Fat" value="Low-Fat" />
-              <label for="Low-Fat">Low-Fat</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Low-Sodium" value="Low-Sodium" />
-              <label for="Low-Sodium">Low-Sodium</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Low-Sugar" value="Low-Sugar" />
-              <label for="Low-Sugar">Low-Sugar</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Alcohol-Free" value="Alcohol-Free" />
-              <label for="Alcohol-Free">Alcohol-Free</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Balanced" value="Balanced" />
-              <label for="Balanced">Balanced</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Immunity" value="Immunity" />
-              <label for="Immunity">Immunity</label>
-            </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="button filter-dropdown_main" id="diet">Diet ▾</button>
+        <div class="dropdown-child dropdown-child_closed" id="diet__box">
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Vegeterian" value="vegeterian" />
+            <label for="Vegeterian">Vegeterian</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Vegan" value="vegan" />
+            <label for="Vegan">Vegan</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Paleo" value="paleo" />
+            <label for="Paleo">Paleo</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="High-Fiber" value="high-Fiber" />
+            <label for="High-Fiber">High-Fiber</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="High-Protein" value="high-Protein" />
+            <label for="High-Protein">High-Protein</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Low-Carb" value="low-Carb" />
+            <label for="Low-Carb">Low-Carb</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Low-Fat" value="low-Fat" />
+            <label for="Low-Fat">Low-Fat</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Low-Sodium" value="low-Sodium" />
+            <label for="Low-Sodium">Low-Sodium</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Low-Sugar" value="low-Sugar" />
+            <label for="Low-Sugar">Low-Sugar</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Alcohol-Free" value="alcohol-Free" />
+            <label for="Alcohol-Free">Alcohol-Free</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Balanced" value="balanced" />
+            <label for="Balanced">Balanced</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Immunity" value="immunity" />
+            <label for="Immunity">Immunity</label>
           </div>
         </div>
-        <div class="filter-dropdown">
-          <button class="button filter-dropdown_main" id="allergy">Allergy ▾</button>
-          <div class="dropdown-child dropdown-child_closed" id="allergy__box">
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Gluten" value="Gluten-free" />
-              <label for="Gluten">Gluten</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Dairy" value="Dairy-free" />
-              <label for="Dairy">Dairy</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Eggs" value="Egg-free" />
-              <label for="Eggs">Eggs</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Soy" value="Soy-free" />
-              <label for="Soy">Soy</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Wheat" value="Wheat-free" />
-              <label for="Wheat">Wheat</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Fish" value="Fish-free" />
-              <label for="Fish">Fish</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Shellfish" value="Shellfish-free" />
-              <label for="Shellfish">Shellfish</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Tree Nuts" value="Tree-Nut-free" />
-              <label for="Tree Nuts">Tree Nuts</label>
-            </div>
-            <div class="dropdown-child_item">
-              <input type="checkbox" id="Peanuts" value="Peanut-free" />
-              <label for="Peanuts">Peanuts</label>
-            </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="button filter-dropdown_main" id="allergy">Allergy ▾</button>
+        <div class="dropdown-child dropdown-child_closed" id="allergy__box">
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Gluten" value="gluten-free" />
+            <label for="Gluten">Gluten</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Dairy" value="dairy-free" />
+            <label for="Dairy">Dairy</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Eggs" value="egg-free" />
+            <label for="Eggs">Eggs</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Soy" value="soy-free" />
+            <label for="Soy">Soy</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Wheat" value="wheat-free" />
+            <label for="Wheat">Wheat</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Fish" value="fish-free" />
+            <label for="Fish">Fish</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Shellfish" value="shellfish-free" />
+            <label for="Shellfish">Shellfish</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Tree Nuts" value="tree-Nut-free" />
+            <label for="Tree Nuts">Tree Nuts</label>
+          </div>
+          <div class="dropdown-child_item">
+            <input type="checkbox" id="Peanuts" value="peanut-free" />
+            <label for="Peanuts">Peanuts</label>
           </div>
         </div>
-        <button class="clearButton">Clear filters</button>
-      </section>
-    </main>
-    <footer></footer>
-    <script src="index.js"></script>
-  </body>
+      </div>
+      <button class="clearButton">Clear filters</button>
+    </section>
+
+    <!-- Контейнер с рецептами -->
+    <section>
+      <div class="container"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img class="footer__logo" src="assets/svg/logo.svg" alt="logo" />
+    <div class="footer__social">
+      <p class="footer__social-text">Follow us:</p>
+      <div class="footer__social-items">
+        <a href="https://m.vk.com/" target="_blank"><img src="assets/svg/vk.svg" alt="vk" /></a>
+        <a href="https://web.tlgrm.app/" target="_blank"><img src="assets/svg/telegram.svg" alt="telegram" /></a>
+        <a href="https://ru.pinterest.com/" target="_blank"><img src="assets/svg/pinterest.svg" alt="pinterest" /></a>
+      </div>
+    </div>
+    <p class="footer__copyright">
+      <a href="https://itgirlschool.com/ " target="_blank">&copy; ITGirlschool, 2024</a>
+    </p>
+  </footer>
+
+  <script src="index.js" type="module"></script>
+  <script src="header.js" type="module"></script>
+</body>
+
 </html>
