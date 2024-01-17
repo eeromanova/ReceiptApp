@@ -16,24 +16,25 @@ function createRecipeCard(recipe) {
     <div class="recipepage">
       <img class="recipepage__img" src="${image}" alt="${label}" />
       <div class="recipepage__info">
-      <h2 class="recipepage__title">${label}</h2>
+      <a class="recipepage__title" href="${url}" target="_blank"><h2>${label}</h2></a>
       <h3 class="recipepage__subtitle">Nutrition</h3>
       <div class="recipepage__nutrition">
-      <p class="recipepage__nutrition-item">${roundedCalories}<br>CALORIES /<br>SERVING</p>
-      <p class="recipepage__nutrition-item">${ingredients.length}<br>INGREDIENTS</p>
-      <p class="recipepage__nutrition-item">${yield}<br>YIELDS</p>
+      <p class="recipepage__nutrition-item"><span>${roundedCalories}</span><br>CALORIES /<br>SERVING</p>
+      <p class="recipepage__nutrition-item"><span>${ingredients.length}</span><br>INGREDIENTS</p>
+      <p class="recipepage__nutrition-item"><span>${yield}</span><br>YIELDS</p>
       </div>
       <div class="recipepage__info-heal">
                     <b>Health label:</b><br>
                     ${healthLabels}
                 </div>
-      <a href="${url}" target="_blank">Open instructions</a>
+      
       </div>
       <div class="recipepage__ingredients">
       <h3 class="recipepage__subtitle">Ingredients</h3>
       <ul class="recipepage__ingredients">${ingredientsList}
             </ul>
             </div>
+            <a class="recipepage__btn" href="${url}" target="_blank">Open instruction</a>
     </div>
   `;
 
