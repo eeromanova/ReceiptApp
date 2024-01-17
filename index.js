@@ -75,24 +75,6 @@ const dietFilter = document.getElementById("diet__box");
 
 const caloriesFilter = document.getElementById("calories__box");
 
-filterDropdowns.forEach((elem) => {
-  elem.addEventListener("mouseover", () => {
-    elem.querySelector(".dropdown-child").classList.add("dropdown-child_open");
-    elem
-      .querySelector(".dropdown-child")
-      .classList.remove("dropdown-child_closed");
-  });
-});
-filterDropdowns.forEach((elem) => {
-  elem.addEventListener("mouseout", () => {
-    elem
-      .querySelector(".dropdown-child")
-      .classList.remove("dropdown-child_open");
-    elem
-      .querySelector(".dropdown-child")
-      .classList.add("dropdown-child_closed");
-  });
-});
 
 
 //Полученные данные из API перебрать, каждый элемент добавить вмассив. Поиск существляется совпадением input.value и элементовмассива
@@ -129,9 +111,12 @@ function handleInputEvent() {
       itemDiv.style.backgroundColor = "#ffab08";
       itemDiv.textContent = elem;
       itemDiv.onclick = function () {
-        headerInput.value = this.textContent; // Обновляем значение поля ввода
+        headerInput.value = this.textContent;
+        suggestionsDiv.remove("itemDiv");
+        filterContainer.style.display = "flex"; // Обновляем значение поля ввода
       };
       suggestionsDiv.appendChild(itemDiv);
+
     });
 
     suggestionsDiv.style.display = "block";
@@ -141,33 +126,27 @@ function handleInputEvent() {
     filterContainer.style.display = "flex";
   }
 }
-
-clearButton.addEventListener('click', clearStorage);
-
-//Получение рецептов 
-const getRecipes = () => {
-  return recipes.map(({ recipe: {image}, recipe: {label}, recipe: {ingredientLines}, recipe: {calories}, recipe: {url}, recipe: {source} }) => {
-    return `<div class="card">
-      <img class="card__img" src="${image}" alt="${label}"/>
-      <p class="card__title">${label}</p>
-      <p class="card__ingredients">${ingredientLines.length} ingredients</p>
-      <p class="card__calories">${Math.round(calories)} calories</p>
-      <button class="card__btn">Open recipe</button>
-      <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
-      </div>
-    </div>`;
-  }).join("");
-}
-
-const container = document.querySelector('.container');
-
-//Вывод рецептов на интерфейс
-const setRecipes = () => {
-  container.innerHTML = getRecipes();
-};
-
 headerInput.addEventListener("input", handleInputEvent);
-///////////////////////////////////////////////////////////////////////////
+
+
+filterDropdowns.forEach((elem) => {
+  elem.addEventListener("mouseover", () => {
+    elem.querySelector(".dropdown-child").classList.add("dropdown-child_open");
+    elem
+      .querySelector(".dropdown-child")
+      .classList.remove("dropdown-child_closed");
+  });
+});
+filterDropdowns.forEach((elem) => {
+  elem.addEventListener("mouseout", () => {
+    elem
+      .querySelector(".dropdown-child")
+      .classList.remove("dropdown-child_open");
+    elem
+      .querySelector(".dropdown-child")
+      .classList.add("dropdown-child_closed");
+  });
+});
 
 allergyFilter.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
@@ -252,5 +231,31 @@ const clearFilters = () => {
 };
 
 clearButton.addEventListener("click", clearFilters);
+//Получение рецептов 
+const getRecipes = () => {
+  return recipes.map(({ recipe: {image}, recipe: {label}, recipe: {ingredientLines}, recipe: {calories}, recipe: {url}, recipe: {source} }) => {
+    return `<div class="card">
+      <img class="card__img" src="${image}" alt="${label}"/>
+      <p class="card__title">${label}</p>
+      <p class="card__ingredients">${ingredientLines.length} ingredients</p>
+      <p class="card__calories">${Math.round(calories)} calories</p>
+      <button class="card__btn">Open recipe</button>
+      <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+const container = document.querySelector('.container');
+
+//Вывод рецептов на интерфейс
+const setRecipes = () => {
+  container.innerHTML = getRecipes();
+};
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
 //Переменные для работы с input в части header.
 
