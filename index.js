@@ -27,8 +27,9 @@ async function getData() {
       console.log(result);
       console.log(result.hits);
       console.log(result.hits[3].recipe.label);
-      return result; 
       setRecipes();
+      return result; 
+      
     } else {
       console.log(`Ошибка: ${response.status}`);
     }
@@ -154,6 +155,7 @@ allergyFilter.querySelectorAll("input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
     console.log(checkboxesAllergy);
+
     if (checkboxesAllergy.length == 0) {
       document.getElementById("allergy").classList.add("filter-dropdown_main");
       document
@@ -217,6 +219,8 @@ maxCal.addEventListener("change", () => {
       .classList.remove("filter-dropdown_orange");
   }
 });
+
+
 
 const clearFilters = () => {
   minCal.value = "";
