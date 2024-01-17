@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+body {
+  color: $colortextdark;
+  font-size: $text;
+  font-family: $fontmain;
+  //   background-color: $bgcolorlight;
+}
