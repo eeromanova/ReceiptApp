@@ -12,14 +12,18 @@ let headerInput = document.querySelector(".header__container_input");
 let findResipe = document.querySelector(".options_rescipes");
 
 let header = document.querySelector(".header");
+let allcheckboxes=[...checkboxesAllergy, ...checkboxesDiet];
+
+
 
 let orderRecipes = document.querySelector(".orderRecipes");
+// `https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20meat%20fish%20salad&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&diet=low-fat&health=immuno-supportive`
 
 let arr = [];
 async function getData() {
   try {
     const response = await fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20meat%20fish%20salad&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`
+      `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`
     );
     if (response.ok) {
       const result = await response.json();
@@ -155,6 +159,7 @@ allergyFilter.querySelectorAll("input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
     console.log(checkboxesAllergy);
+    console.log(allcheckboxes);
 
     if (checkboxesAllergy.length == 0) {
       document.getElementById("allergy").classList.add("filter-dropdown_main");
@@ -178,6 +183,7 @@ dietFilter.querySelectorAll("input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
     console.log(checkboxesDiet);
+    console.log(allcheckboxes);
     if (checkboxesDiet.length == 0) {
       document.getElementById("diet").classList.add("filter-dropdown_main");
       document
