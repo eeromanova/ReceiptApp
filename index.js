@@ -1,30 +1,27 @@
 let recipes = []; //для вывода карточек
-let result='{}';
+let result = "{}";
 let checkboxesAllergy = [];
 let checkboxesDiet = [];
 let calories = {
   from: "",
   to: "",
 };
+
+let checkboxesAll = [];
 let recipe = [];
 let headerInput = document.querySelector(".header__container_input");
 
 let findResipe = document.querySelector(".options_rescipes");
 
 let header = document.querySelector(".header");
-let allcheckboxes=[...checkboxesAllergy, ...checkboxesDiet];
-
-
 
 let orderRecipes = document.querySelector(".orderRecipes");
-// `https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20meat%20fish%20salad&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&diet=low-fat&health=immuno-supportive`
+let url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
 
 let arr = [];
 async function getData() {
   try {
-    const response = await fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`
-    );
+    const response = await fetch(url);
     if (response.ok) {
       const result = await response.json();
       recipes = result.hits;
@@ -32,8 +29,7 @@ async function getData() {
       console.log(result.hits);
       console.log(result.hits[3].recipe.label);
       setRecipes();
-      return result; 
-      
+      return result;
     } else {
       console.log(`Ошибка: ${response.status}`);
     }
@@ -47,6 +43,7 @@ const filterDropdowns = document.querySelectorAll(".filter-dropdown");
 const filterDropdownButtons = document.querySelectorAll(
   ".filter-dropdown_main"
 );
+const filtersContainer = document.querySelector(".filter__container");
 
 filterDropdowns.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
@@ -79,8 +76,6 @@ const allergyFilter = document.getElementById("allergy__box");
 const dietFilter = document.getElementById("diet__box");
 
 const caloriesFilter = document.getElementById("calories__box");
-
-
 
 //Полученные данные из API перебрать, каждый элемент добавить вмассив. Поиск существляется совпадением input.value и элементовмассива
 let filterContainer = document.querySelector(".filter__container");
@@ -121,7 +116,6 @@ function handleInputEvent() {
         filterContainer.style.display = "flex"; // Обновляем значение поля ввода
       };
       suggestionsDiv.appendChild(itemDiv);
-
     });
 
     suggestionsDiv.style.display = "block";
@@ -132,7 +126,6 @@ function handleInputEvent() {
   }
 }
 headerInput.addEventListener("input", handleInputEvent);
-
 
 filterDropdowns.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
@@ -153,13 +146,58 @@ filterDropdowns.forEach((elem) => {
   });
 });
 
+filtersContainer.querySelectorAll("input").forEach((input) => {
+  input.addEventListener("change", () => {
+    if (input.checked) {
+      if (
+        input.value == "balanced" ||
+        input.value == "high-fiber" ||
+        input.value == "high-protein" ||
+        input.value == "low-carb" ||
+        input.value == "low-fat" ||
+        input.value == "low-sodium"
+      ) {
+        url = `${url}&diet=${input.value}`;
+      } else{
+        url = `${url}&health=${input.value}`;
+      }
+      console.log(url);
+      getData();
+    } else {
+      if (
+        input.value == "balanced" ||
+        input.value == "high-fiber" ||
+        input.value == "high-protein" ||
+        input.value == "low-carb" ||
+        input.value == "low-fat" ||
+        input.value == "low-sodium"
+      ) {
+        let str=`&diet=${input.value}`;
+        console.log(str);
+        let n=url.indexOf(str);
+        console.log(n);
+        let l=(str).length;
+        console.log(l);
+        console.log(url.slice(0, n));
+        url=`${url.slice(0, n)}${url.slice(n+l)}`
+
+      } else {
+        let str=`&health=${input.value}`;
+        let n=url.indexOf(str);
+        let l=(str).length;
+        url=`${url.slice(0, n)}${url.slice(n+l)}`
+      }
+      console.log(url);
+      getData();
+    }
+  });
+});
+
 allergyFilter.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
     checkboxesAllergy = allergyFilter.querySelectorAll(
       "input[type=checkbox]:checked"
     );
-    console.log(checkboxesAllergy);
-    console.log(allcheckboxes);
 
     if (checkboxesAllergy.length == 0) {
       document.getElementById("allergy").classList.add("filter-dropdown_main");
@@ -183,7 +221,6 @@ dietFilter.querySelectorAll("input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
     console.log(checkboxesDiet);
-    console.log(allcheckboxes);
     if (checkboxesDiet.length == 0) {
       document.getElementById("diet").classList.add("filter-dropdown_main");
       document
@@ -226,8 +263,6 @@ maxCal.addEventListener("change", () => {
   }
 });
 
-
-
 const clearFilters = () => {
   minCal.value = "";
   maxCal.value = "";
@@ -238,13 +273,25 @@ const clearFilters = () => {
     button.classList.remove("filter-dropdown_orange");
     button.classList.add("filter-dropdown_main");
   });
+  url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
+  getData();
 };
 
 clearButton.addEventListener("click", clearFilters);
-//Получение рецептов 
+//Получение рецептов
+
 const getRecipes = () => {
-  return recipes.map(({ recipe: {image}, recipe: {label}, recipe: {ingredientLines}, recipe: {calories}, recipe: {url}, recipe: {source} }) => {
-    return `<div class="card">
+  return recipes
+    .map(
+      ({
+        recipe: { image },
+        recipe: { label },
+        recipe: { ingredientLines },
+        recipe: { calories },
+        recipe: { url },
+        recipe: { source },
+      }) => {
+        return `<div class="card">
       <img class="card__img" src="${image}" alt="${label}"/>
       <p class="card__title">${label}</p>
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
@@ -253,19 +300,16 @@ const getRecipes = () => {
       <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
       </div>
     </div>`;
-  }).join("");
-}
+      }
+    )
+    .join("");
+};
 
-const container = document.querySelector('.container');
+const container = document.querySelector(".container");
 
 //Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
 };
 
-
-///////////////////////////////////////////////////////////////////////////
-
-
-//Переменные для работы с input в части header.
 
