@@ -105,14 +105,17 @@ function handleInputEvent() {
     });
 
     filteredRecipes.forEach((elem) => {
-      filterContainer.style.display = "none";
       let itemDiv = document.createElement("div");
-      itemDiv.style.marginLeft = "25%";
-      itemDiv.style.backgroundColor = "#ffab08";
+      suggestionsDiv.style.position = "absolute"; // Или 'fixed', в зависимости от вашего макета
+      suggestionsDiv.style.zIndex = "9999";
+      suggestionsDiv.style.backgroundColor = "#ffab08"; // Пример фона
+      suggestionsDiv.style.width = "100%";
+      suggestionsDiv.style.marginLeft = "30%";
       itemDiv.textContent = elem;
       itemDiv.onclick = function () {
         headerInput.value = this.textContent;
         suggestionsDiv.remove("itemDiv");
+        this.remove();
         filterContainer.style.display = "flex"; // Обновляем значение поля ввода
       };
       suggestionsDiv.appendChild(itemDiv);
@@ -158,7 +161,7 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-sodium"
       ) {
         url = `${url}&diet=${input.value}`;
-      } else{
+      } else {
         url = `${url}&health=${input.value}`;
       }
       console.log(url);
@@ -172,20 +175,19 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        let str=`&diet=${input.value}`;
+        let str = `&diet=${input.value}`;
         console.log(str);
-        let n=url.indexOf(str);
+        let n = url.indexOf(str);
         console.log(n);
-        let l=(str).length;
+        let l = str.length;
         console.log(l);
         console.log(url.slice(0, n));
-        url=`${url.slice(0, n)}${url.slice(n+l)}`
-
+        url = `${url.slice(0, n)}${url.slice(n + l)}`;
       } else {
-        let str=`&health=${input.value}`;
-        let n=url.indexOf(str);
-        let l=(str).length;
-        url=`${url.slice(0, n)}${url.slice(n+l)}`
+        let str = `&health=${input.value}`;
+        let n = url.indexOf(str);
+        let l = str.length;
+        url = `${url.slice(0, n)}${url.slice(n + l)}`;
       }
       console.log(url);
       getData();
@@ -311,5 +313,3 @@ const container = document.querySelector(".container");
 const setRecipes = () => {
   container.innerHTML = getRecipes();
 };
-
-
