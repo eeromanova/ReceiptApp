@@ -1,165 +1,361 @@
 .header {
-  height: 365px;
-  background-color: $bgcoloryellow;
-}
-
-// header__container_picturesLogo - блок с картинкой пиццы и надписью Recipes are just
-// a click away!
-.header__container_picturesLogo {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  margin-left: 2%;
-  max-height: 320px;
-  max-width: 900px;
-}
-.phrase_mobile-version {
-  display: none;
-}
-
-// Этот блок под надпись Recipes are just a click away!
-.phrase {
-  margin-top: 50px;
-  max-height: 70px;
-  font-family: Nunito;
-  display: flex;
-  flex-direction: column;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 20%;
-}
-.header__container_tittleFirst {
-  color: $colortextlight;
-}
-.header__container_tittleSecond {
-  color: $bgcolororange;
-}
-.header__container_tittle-img {
-  display: none;
-}
-
-// Данные блок включает в себя надпись YUMYUM, логотип, поисковую строку и кнопку
-.header__container_search {
-  //padding-bottom: 150px;
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-}
-.header__container_tittle {
-  font-family: Nunito;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 0%;
-  color: $colortextlight;
-}
-
-.header__container_img {
-  width: 60px;
-  height: 60px;
-  margin-left: 8px;
-}
-
-.header__container_input {
-  width: 688px;
-  height: 51px;
-  border-radius: 25px;
-  border: none;
-  padding-left: 20px;
-  margin-left: 8px;
-}
-.header__container_btn {
-  width: 161px;
-  height: 52px;
-  border: none;
-  padding: 8px, 14px, 8px, 14px;
-  border-radius: 25px;
-  background-color: $bgcolororange;
-  margin-left: 8px;
-}
-
-// Медиазапросы
-
-@media (min-width: 480px) and (max-width: 870px) {
-  .phrase {
-    display: block;
-    height: 300px;
+    height: 400px;
+    background-color: $bgcoloryellow;
   }
-  .header__container_tittleFirst,
-  .header__container_tittleSecond,
-  .header__container_tittle {
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 600;
-  }
-  .header__container_pizza {
-    width: 250px;
-    height: 200px;
-  }
-  .header__container_input {
-    width: 344px;
-    height: 31px;
-  }
-  .header__container_btn {
-    width: 80px;
-    height: 25px;
-  }
-  .header__container_img {
-    width: 30px;
-    height: 35px;
-  }
-  .header {
-    max-height: 270px;
-  }
-}
-
-.orderRecipes {
-  display: none;
-}
-
-@media (min-width: 280px) and (max-width: 480px) {
-  .header {
-    display: block;
-    text-align: center;
-    max-height: 400px;
-  }
-
+  
+  // header__container_picturesLogo - блок с картинкой пиццы и надписью Recipes are just
+  // a click away!
   .header__container_picturesLogo {
-    display: none;
-  }
-  .header__container_search {
-    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-left: 2%;
+    max-height: 320px;
+    max-width: 900px;
   }
   .phrase_mobile-version {
-    display: block;
+    display: none;
+  }
+  
+  // Этот блок под надпись Recipes are just a click away!
+  .phrase {
+    margin-top: 50px;
+    max-height: 70px;
     font-family: Nunito;
-    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    font-size: 50px;
     font-style: normal;
     font-weight: 800;
+    line-height: 20%;
+  }
+  .header__container_tittleFirst {
+    color: $colortextlight;
+  }
+  .header__container_tittleSecond {
+    color: $bgcolororange;
+  }
+  .header__container_tittle-img {
+    display: none;
+  }
+  
+  // Данные блок включает в себя надпись YUMYUM, логотип, поисковую строку и кнопку
+  .header__container_search {
+    //margin-bottom: 150px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   .header__container_tittle {
-    margin-left: 90px;
+    font-family: Nunito;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 0%;
+    color: $colortextlight;
   }
+  
   .header__container_img {
-    margin-left: 60px;
-    margin-top: -60px;
+    width: 60px;
+    height: 60px;
+    margin-left: 8px;
   }
+  
   .header__container_input {
-    width: 300px;
-    margin-left: 5%;
+    width: 688px;
+    height: 51px;
+    border-radius: 25px;
+    border: none;
+    padding-left: 20px;
+    margin-left: 8px;
   }
   .header__container_btn {
-    width: 80px;
-    margin-left: 60%;
-    margin-top: 20px;
+    width: 161px;
+    height: 52px;
+    border: none;
+    padding: 8px, 14px, 8px, 14px;
+    border-radius: 25px;
+    background-color: $bgcolororange;
+    margin-left: 8px;
   }
-}
-@media (min-width: 2000px) {
-  .header__container_picturesLogo {
-    margin-left: 14rem;
+  
+  // Медиазапросы
+  
+  @media (min-width: 480px) and (max-width: 1200px) {
+  .header__container_picturesLogo{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: space-evenly
   }
-}
+  
+    .phrase {
+      display: block;
+      height: 300px;
+    }
+    .header__container_tittleFirst,
+    .header__container_tittleSecond,
+    .header__container_tittle {
+      font-size: 35px;
+      font-style: normal;
+      font-weight: 600;
+    }
+    .header__container_pizza {
+      width: 250px;
+      height: 200px;
+    }
+    .header__container_input {
+      width: 344px;
+      height: 31px;
+    }
+    .header__container_btn {
+      width: 80px;
+      height: 33px;
+    }
+    .header__container_img {
+      width: 30px;
+      height: 35px;
+    }
+    .header {
+      max-height: 270px;
+    }
+  }
+  
+  .orderRecipes {
+    display: none;
+  }
+  
+  @media (min-width: 481px) and (max-width: 530px){
+      .header__container_tittleFirst{
+          font-size: 25px;
+      }
+      .header__container_tittleSecond{
+          font-size: 25px;
+      }
+  
+  }
+  
+  
+  @media screen and (max-width: 480px) {
+    .header {
+      display: block;
+      text-align: center;
+      max-height: 320px;
+    }
+  
+    .header__container_picturesLogo {
+      display: none;
+    }
+    .header__container_search {
+      flex-direction: column;
+      
+    }
+    .phrase_mobile-version {
+      display: block;
+      font-family: Nunito;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 800;
+    }
+    .header__container_tittle {
+      //margin-left: 20%;
+      text-align: center;
+      font-size: 28px;
+    }
+    .header__container_tittleFirst{
+        margin: 15px auto 0 auto;
+    }
+    .header__container_tittleSecond{
+        margin: 0 auto 15px auto;
+    }
+    .header__container_img {
+        width: 33.5px;
+        height: 33.5px;
+        margin: auto;
+    
+      //margin-top: -18%;
+      
+    }
+    .header__container_input {
+      width: 80%;
+     margin: auto;
+    }
+    .header__container_btn {
+      height: 30px;
+      width: 80px;
+      margin: 10pt auto;
+    //   margin-left: 60%;
+    //   margin-top: 20px;
+    }
+  }
+  @media (min-width: 1800px) {
+    .header__container_picturesLogo {
+      margin-left: 20%;
+    }
+  }
+// .header {
+//   height: 365px;
+//   background-color: $bgcoloryellow;
+// }
+
+// // header__container_picturesLogo - блок с картинкой пиццы и надписью Recipes are just
+// // a click away!
+// .header__container_picturesLogo {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-direction: row;
+//   margin-left: 2%;
+//   max-height: 320px;
+//   max-width: 900px;
+// }
+// .phrase_mobile-version {
+//   display: none;
+// }
+
+// // Этот блок под надпись Recipes are just a click away!
+// .phrase {
+//   margin-top: 50px;
+//   max-height: 70px;
+//   font-family: Nunito;
+//   display: flex;
+//   flex-direction: column;
+//   font-size: 50px;
+//   font-style: normal;
+//   font-weight: 800;
+//   line-height: 20%;
+// }
+// .header__container_tittleFirst {
+//   color: $colortextlight;
+// }
+// .header__container_tittleSecond {
+//   color: $bgcolororange;
+// }
+// .header__container_tittle-img {
+//   display: none;
+// }
+
+// // Данные блок включает в себя надпись YUMYUM, логотип, поисковую строку и кнопку
+// .header__container_search {
+//   //padding-bottom: 150px;
+//   justify-content: center;
+//   display: flex;
+//   flex-direction: row;
+// }
+// .header__container_tittle {
+//   font-family: Nunito;
+//   font-size: 50px;
+//   font-style: normal;
+//   font-weight: 800;
+//   line-height: 0%;
+//   color: $colortextlight;
+// }
+
+// .header__container_img {
+//   width: 60px;
+//   height: 60px;
+//   margin-left: 8px;
+// }
+
+// .header__container_input {
+//   width: 688px;
+//   height: 51px;
+//   border-radius: 25px;
+//   border: none;
+//   padding-left: 20px;
+//   margin-left: 8px;
+// }
+// .header__container_btn {
+//   width: 161px;
+//   height: 52px;
+//   border: none;
+//   padding: 8px, 14px, 8px, 14px;
+//   border-radius: 25px;
+//   background-color: $bgcolororange;
+//   margin-left: 8px;
+// }
+
+// // Медиазапросы
+
+// @media (min-width: 480px) and (max-width: 870px) {
+//   .phrase {
+//     display: block;
+//     height: 300px;
+//   }
+//   .header__container_tittleFirst,
+//   .header__container_tittleSecond,
+//   .header__container_tittle {
+//     font-size: 25px;
+//     font-style: normal;
+//     font-weight: 600;
+//   }
+//   .header__container_pizza {
+//     width: 250px;
+//     height: 200px;
+//   }
+//   .header__container_input {
+//     width: 344px;
+//     height: 31px;
+//   }
+//   .header__container_btn {
+//     width: 80px;
+//     height: 25px;
+//   }
+//   .header__container_img {
+//     width: 30px;
+//     height: 35px;
+//   }
+//   .header {
+//     max-height: 270px;
+//   }
+// }
+
+// .orderRecipes {
+//   display: none;
+// }
+
+// @media (min-width: 280px) and (max-width: 480px) {
+//   .header {
+//     display: block;
+//     text-align: center;
+//     max-height: 400px;
+//   }
+
+//   .header__container_picturesLogo {
+//     display: none;
+//   }
+//   .header__container_search {
+//     flex-direction: column;
+//   }
+//   .phrase_mobile-version {
+//     display: block;
+//     font-family: Nunito;
+//     font-size: 30px;
+//     font-style: normal;
+//     font-weight: 800;
+//   }
+//   .header__container_tittle {
+//     margin-left: 90px;
+//   }
+//   .header__container_img {
+//     margin-left: 60px;
+//     margin-top: -60px;
+//   }
+//   .header__container_input {
+//     width: 300px;
+//     margin-left: 5%;
+//   }
+//   .header__container_btn {
+//     width: 80px;
+//     margin-left: 60%;
+//     margin-top: 20px;
+//   }
+// }
+// @media (min-width: 2000px) {
+//   .header__container_picturesLogo {
+//     margin-left: 14rem;
+//   }
+// }
 // .header{
 //  height: calc(100vh - 364px);
 //  background-color: $bgcoloryellow;}
