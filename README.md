@@ -39,6 +39,8 @@
 
 ### Collaboraters
 
-<a href="https://github.com/OlgaLosikova">ElenaAnohina</a>
+<a href="https://github.com/lenaanohina">ElenaAnohina</a>
+<a href="https://github.com/Anna-Lazakovich">AnnaLazakovich</a>
+<a href="https://github.com/diloytd">Diana</a>
 
 
