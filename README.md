@@ -2,7 +2,7 @@
 
 <h1 align="center">Recipe application</h1>
   
-<img src="https://github.com/eeromanova/RecipesApp/raw/main/assets/images/printscreen.png">
+<img src="https://github.com/eeromanova/RecipesApp/raw/main/assets/img/printscreen.png">
 
 ## Description
 
