@@ -128,6 +128,41 @@ function handleInputEvent() {
     filterContainer.style.display = "flex";
   }
 }
+
+// function handleInputEvent() {
+//   let inputValue = headerInput.value; // Получение текущего значения поля ввода
+
+//   if (inputValue !== "") {
+//     suggestionsDiv.innerHTML = ""; // Очищаем предыдущие результаты
+//     filteredRecipes = recipe.filter((elem) => {
+//       const reg = new RegExp("^" + inputValue, "gi");
+//       return reg.test(elem);
+//     });
+
+//     filteredRecipes.forEach((elem) => {
+//       let itemDiv = document.createElement("div");
+//       suggestionsDiv.style.position = "absolute"; // Или 'fixed', в зависимости от вашего макета
+//       suggestionsDiv.style.zIndex = "9999";
+//       suggestionsDiv.style.backgroundColor = "#ffab08"; // Пример фона
+//       suggestionsDiv.style.width = "100%";
+//       suggestionsDiv.style.marginLeft = "30%";
+//       itemDiv.textContent = elem;
+//       itemDiv.onclick = function () {
+//         headerInput.value = this.textContent;
+//         suggestionsDiv.remove("itemDiv");
+//         this.remove();
+//         filterContainer.style.display = "flex"; // Обновляем значение поля ввода
+//       };
+//       suggestionsDiv.appendChild(itemDiv);
+//     });
+
+//     suggestionsDiv.style.display = "block";
+//   } else {
+//     suggestionsDiv.style.display = "none";
+//     suggestionsDiv.innerHTML = "";
+//     filterContainer.style.display = "flex";
+//   }
+// }
 headerInput.addEventListener("input", handleInputEvent);
 
 filterDropdowns.forEach((elem) => {
