@@ -27,7 +27,7 @@ async function getData() {
       recipes = result.hits;
       console.log(result);
       console.log(result.hits);
-      console.log(result.hits[3].recipe.label);
+      // console.log(result.hits[3].recipe.label);
       setRecipes();
       return result;
     } else {
@@ -129,41 +129,27 @@ function handleInputEvent() {
   }
 }
 
-// function handleInputEvent() {
-//   let inputValue = headerInput.value; // Получение текущего значения поля ввода
-
-//   if (inputValue !== "") {
-//     suggestionsDiv.innerHTML = ""; // Очищаем предыдущие результаты
-//     filteredRecipes = recipe.filter((elem) => {
-//       const reg = new RegExp("^" + inputValue, "gi");
-//       return reg.test(elem);
-//     });
-
-//     filteredRecipes.forEach((elem) => {
-//       let itemDiv = document.createElement("div");
-//       suggestionsDiv.style.position = "absolute"; // Или 'fixed', в зависимости от вашего макета
-//       suggestionsDiv.style.zIndex = "9999";
-//       suggestionsDiv.style.backgroundColor = "#ffab08"; // Пример фона
-//       suggestionsDiv.style.width = "100%";
-//       suggestionsDiv.style.marginLeft = "30%";
-//       itemDiv.textContent = elem;
-//       itemDiv.onclick = function () {
-//         headerInput.value = this.textContent;
-//         suggestionsDiv.remove("itemDiv");
-//         this.remove();
-//         filterContainer.style.display = "flex"; // Обновляем значение поля ввода
-//       };
-//       suggestionsDiv.appendChild(itemDiv);
-//     });
-
-//     suggestionsDiv.style.display = "block";
-//   } else {
-//     suggestionsDiv.style.display = "none";
-//     suggestionsDiv.innerHTML = "";
-//     filterContainer.style.display = "flex";
-//   }
-// }
 headerInput.addEventListener("input", handleInputEvent);
+
+const seachRecipeButton = document.querySelector(".header__container_btn");
+
+seachRecipeButton.addEventListener("click", () => {
+  console.log(headerInput.value);
+  let requestArr = [...headerInput.value];
+  for (let i = 0; i < requestArr.length; i++) {
+    if (requestArr[i] == " ") {
+      requestArr[i] = "%20";
+    }
+  }
+  console.log(requestArr);
+  url = `${url}&q=${requestArr.join("")}`;
+  console.log(url);
+  getData();
+  let str = `&q=${requestArr.join("")}`;
+  let n = url.indexOf(str);
+  let l = str.length;
+  url = `${url.slice(0, n)}${url.slice(n + l)}`;
+});
 
 filterDropdowns.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
@@ -186,6 +172,14 @@ filterDropdowns.forEach((elem) => {
 
 filtersContainer.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
+    console.log(headerInput.value);
+    let requestArr = [...headerInput.value];
+    for (let i = 0; i < requestArr.length; i++) {
+      if (requestArr[i] == " ") {
+        requestArr[i] = "%20";
+      }
+    }
+
     if (input.checked) {
       if (
         input.value == "balanced" ||
@@ -195,12 +189,26 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        url = `${url}&diet=${input.value}`;
+        if (url.includes(headerInput.value)) {
+          url = `${url}&diet=${input.value}`;
+        } else {
+          url = `${url}&q=${requestArr.join("")}`;
+          url = `${url}&diet=${input.value}`;
+        }
       } else {
-        url = `${url}&health=${input.value}`;
+        if (url.includes(headerInput.value)) {
+          url = `${url}&health=${input.value}`;
+        } else {
+          url = `${url}&q=${requestArr.join("")}`;
+          url = `${url}&health=${input.value}`;
+        }
       }
       console.log(url);
       getData();
+      let str2 = `&q=${requestArr.join("")}`;
+      let n2 = url.indexOf(str2);
+      let l2 = str2.length;
+      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
     } else {
       if (
         input.value == "balanced" ||
@@ -210,22 +218,32 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        let str = `&diet=${input.value}`;
-        console.log(str);
-        let n = url.indexOf(str);
-        console.log(n);
-        let l = str.length;
-        console.log(l);
-        console.log(url.slice(0, n));
-        url = `${url.slice(0, n)}${url.slice(n + l)}`;
+        let str1 = `&diet=${input.value}`;
+        let n1 = url.indexOf(str1);
+        let l1 = str1.length;
+        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}`;
+        if (!headerInput.value == "") {
+          url = `${url}&q=${requestArr.join("")}`;
+          console.log(url);
+        }
       } else {
         let str = `&health=${input.value}`;
         let n = url.indexOf(str);
         let l = str.length;
         url = `${url.slice(0, n)}${url.slice(n + l)}`;
+        if (!headerInput.value == "") {
+          url = `${url}&q=${requestArr.join("")}`;
+          console.log(url);
+        }
       }
       console.log(url);
       getData();
+      if (url.includes(headerInput.value)) {
+        let str2 = `&q=${requestArr.join("")}`;
+        let n2 = url.indexOf(str2);
+        let l2 = str2.length;
+        url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      }
     }
   });
 });
@@ -310,7 +328,19 @@ const clearFilters = () => {
     button.classList.remove("filter-dropdown_orange");
     button.classList.add("filter-dropdown_main");
   });
-  url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
+  if (!headerInput.value == "") {
+    let requestArr = [...headerInput.value];
+    for (let i = 0; i < requestArr.length; i++) {
+      if (requestArr[i] == " ") {
+        requestArr[i] = "%20";
+      }
+    }
+    console.log(requestArr);
+    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join("")}`;
+  } else {
+    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
+  }
+  console.log(url);
   getData();
 };
 
