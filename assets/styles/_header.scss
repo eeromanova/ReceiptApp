@@ -1,5 +1,5 @@
 .header {
-  height: 365px;
+  height: 400px;
   background-color: $bgcoloryellow;
 }
 
@@ -41,7 +41,7 @@
 
 // Данные блок включает в себя надпись YUMYUM, логотип, поисковую строку и кнопку
 .header__container_search {
-  //padding-bottom: 150px;
+  //margin-bottom: 150px;
   justify-content: center;
   display: flex;
   flex-direction: row;
@@ -81,7 +81,14 @@
 
 // Медиазапросы
 
-@media (min-width: 480px) and (max-width: 870px) {
+@media (min-width: 480px) and (max-width: 1200px) {
+.header__container_picturesLogo{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-evenly
+}
+
   .phrase {
     display: block;
     height: 300px;
@@ -89,7 +96,7 @@
   .header__container_tittleFirst,
   .header__container_tittleSecond,
   .header__container_tittle {
-    font-size: 25px;
+    font-size: 35px;
     font-style: normal;
     font-weight: 600;
   }
@@ -118,7 +125,18 @@
   display: none;
 }
 
-@media (min-width: 280px) and (max-width: 480px) {
+@media (min-width: 481px) and (max-width: 530px){
+    .header__container_tittleFirst{
+        font-size: 25px;
+    }
+    .header__container_tittleSecond{
+        font-size: 25px;
+    }
+
+}
+
+
+@media (min-width: 230px) and (max-width: 480px) {
   .header {
     display: block;
     text-align: center;
@@ -130,6 +148,7 @@
   }
   .header__container_search {
     flex-direction: column;
+    
   }
   .phrase_mobile-version {
     display: block;
@@ -139,25 +158,31 @@
     font-weight: 800;
   }
   .header__container_tittle {
-    margin-left: 90px;
+    //margin-left: 20%;
+    text-align: center;
+    font-size: 40px;
   }
   .header__container_img {
-    margin-left: 60px;
-    margin-top: -60px;
+    margin-left: 40%;
+    //margin-top: -18%;
+    
+    width: 50px;
+    height: 50px;
   }
   .header__container_input {
-    width: 300px;
+    width: 80%;
     margin-left: 5%;
   }
   .header__container_btn {
+    height: 70%;
     width: 80px;
     margin-left: 60%;
     margin-top: 20px;
   }
 }
-@media (min-width: 2000px) {
+@media (min-width: 1800px) {
   .header__container_picturesLogo {
-    margin-left: 14rem;
+    margin-left: 20%;
   }
 }
 // .header{
