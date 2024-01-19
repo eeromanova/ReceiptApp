@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/styles/normalize.css" />
     <link rel="stylesheet" href="assets/styles/style.css" />
-    <link rel="icon" href="./assets/img/favicon.png" type="img/png" />
+    <link rel="icon" href="assets/img/favicon.png" type="img/png" />
     <title>Recipes and Food</title>
-</head>
+  </head>
 
-<body>
-    <header></header>
+  <body>
+    <header class="header__recipe">
+      <div class="header__container_recipe">
+        <div class="header__logocontainer_recipe">
+        <h1 class="header__title_recipe">YumYum</h1>
+        <img
+          src="assets/img_header/logofolk.png"
+          class="header__img_recipe"
+          alt="logo"
+        /></div>
+        <p class="header__text">Recipes are just a click away</p>
+      </div>
+      <a class="header__recipe_btn" href="index.html">Home page</a>
+    </header>
     <main>
-        <section class="recipepage-container"></section>
+      <section class="recipepage-container"></section>
     </main>
 
     <footer class="footer">
-        <img class="footer__logo" src="assets/svg/logo.svg" alt="logo" />
-        <div class="footer__social">
-            <p class="footer__social-text">Follow us:</p>
-            <div class="footer__social-items">
-                <a href="https://m.vk.com/" target="_blank"><img src="assets/svg/vk.svg" alt="vk" /></a>
-                <a href="https://web.tlgrm.app/" target="_blank"><img src="assets/svg/telegram.svg"
-                        alt="telegram" /></a>
-                <a href="https://ru.pinterest.com/" target="_blank"><img src="assets/svg/pinterest.svg"
-                        alt="pinterest" /></a>
-            </div>
+      <img class="footer__logo" src="assets/svg/logo.svg" alt="logo" />
+      <div class="footer__social">
+        <p class="footer__social-text">Follow us:</p>
+        <div class="footer__social-items">
+          <a href="https://m.vk.com/" target="_blank"
+            ><img src="assets/svg/vk.svg" alt="vk"
+          /></a>
+          <a href="https://web.tlgrm.app/" target="_blank"
+            ><img src="assets/svg/telegram.svg" alt="telegram"
+          /></a>
+          <a href="https://ru.pinterest.com/" target="_blank"
+            ><img src="assets/svg/pinterest.svg" alt="pinterest"
+          /></a>
         </div>
-        <p class="footer__copyright">
-            <a href="https://itgirlschool.com/ " target="_blank">&copy; ITGirlschool, 2024</a>
-        </p>
+      </div>
+      <p class="footer__copyright">
+        <a href="https://itgirlschool.com/ " target="_blank"
+          >&copy; ITGirlschool, 2024</a
+        >
+      </p>
     </footer>
-
+    <!-- <script src="index.js"></script> -->
     <script src="recipepage.js"></script>
-</body>
-
+  </body>
 </html>

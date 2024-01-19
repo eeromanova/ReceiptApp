@@ -3,12 +3,22 @@
   // gap: 10px;
   justify-content: center;
   font-family: $fontmain;
-  @media screen and (max-width: 480px) {
+  @media (max-width: 480px) {
     display: grid;
+    // gap: 5px;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+  }
+  @media (max-width: 280px){
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
   }
 }
 .filter-dropdown_main {
+    position: relative;
+    margin-top: 5px;
   width: 130px;
   height: 40px;
   border-radius: 50px;
@@ -16,13 +26,20 @@
   font-size: 16px;
   border: none;
   background-color: $bgcolorwhite;
-  @media screen and (max-width: 480px) {
-    width: 74px;
+  @media (max-width: 480px) {
+    width: 100px;
   height: 30px;
-    font-size: 12px;
+    // font-size: 12px;
+  }
+  @media (max-width: 330px){
+    width: 70px;
+  height: 30px;
+    font-size: 10px;
   }
 }
 .filter-dropdown_orange {
+    position: relative;
+    margin-top: 5px;
   width: 130px;
   height: 40px;
   border-radius: 50px;
@@ -31,10 +48,15 @@
   border: none;
   color: $colortextlight;
   background-color: $bgcoloryellow;
-  @media screen and (max-width: 480px) {
+  @media (max-width: 480px) {
     width: 74px;
   height: 30px;
     font-size: 12px;
+  }
+  @media (max-width: 280px){
+    width: 60px;
+  height: 30px;
+    font-size: 10px;
   }
 }
 .filter-dropdown_main:hover {
@@ -42,12 +64,20 @@
   background-color: $bgcoloryellow;
 }
 .dropdown-child_open {
+    position: absolute;
+
   display: flex;
   flex-direction: column;
-  margin-left: 10%;
-  background-color: $bgcolorgrey;
-  @media screen and (max-width: 480px) {
+  margin-top: 1%;
+//   margin-left: 1%;
+  padding: 2%;
+  border-radius: 20px;
+  background-color: $bgcoloryellow;
+  @media (max-width: 480px) {
     font-size: 12px;
+  }
+  @media (max-width: 280px){
+    font-size: 10px;
   }
 }
 .dropdown-child_closed {
@@ -59,6 +89,7 @@
   border: 1px solid gray;
 }
 .clearButton {
+    margin-top: 5px;
   width: 130px;
   height: 40px;
   border-radius: 50px;
@@ -66,10 +97,15 @@
   font-size: 16px;
   border: none;
   background-color: $bgcolorwhite;
-  @media screen and (max-width: 480px) {
-    width: 108px;
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 30px;
+    justify-self: center;
+  }
+  @media (max-width: 330px){
+    width: 70px;
   height: 30px;
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 .clearButton:hover {
