@@ -58,7 +58,7 @@ async function fetchRandomRecipeAndRender() {
     console.log(data);
     const randomIndex = Math.floor(Math.random() * data.hits.length);
     const randomRecipe = data.hits[randomIndex].recipe;
-
+    console.log(data.hits[randomIndex].recipe);
     appendRecipeCard(container, randomRecipe);
   } catch (error) {
     console.error("Ошибка при получении данных:", error);
