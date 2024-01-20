@@ -149,6 +149,7 @@ seachRecipeButton.addEventListener("click", () => {
   let n = url.indexOf(str);
   let l = str.length;
   url = `${url.slice(0, n)}${url.slice(n + l)}`;
+  console.log(url);
 });
 
 filterDropdowns.forEach((elem) => {
