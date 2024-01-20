@@ -363,13 +363,16 @@ const getRecipes = () => {
         recipe: { source },
       }) => {
         return `<div class="card">
+      <div>
       <img class="card__img" src="${image}" alt="${label}"/>
-      <p class="card__title">${label}</p>
+      <h2 class="card__title">${label}</h2>
+      </div>
+      <article class="card__description">
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
-      <ul><li class="card__btn"><a htef='#' class='card__btn_chosen'>Open recipe </a></li></ul>
-      <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
-      </div>
+      <a href="${url}" class="card__btn" target="_blank">Open recipe</a>
+      <a href="${url}" class="card__link" target="_blank">Source: ${source}</a>
+      </article>
     </div>`;
       }
     )
