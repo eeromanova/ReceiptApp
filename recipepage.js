@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const recipeContainer = document.querySelector(".recipepage-container");
+
   const selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
   console.log(selectedRecipe);
   const recipeEl = selectedRecipe.recipe;
