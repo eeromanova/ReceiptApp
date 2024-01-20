@@ -367,7 +367,7 @@ const getRecipes = () => {
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
       <button class="card__btn">Open recipe</button>
-      <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
+      <div class="card__source"><a href="${url}" class="card__link" target="_blank">Source: ${source}</a>
       </div>
       </article>
     </div>`;
