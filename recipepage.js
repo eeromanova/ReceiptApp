@@ -52,24 +52,3 @@ function createRecipeCard(selectedRecipe) {
 
   return cardHtml;
 }
-
-// // Функция получения данных с API и добавление случайной карточки на страницу(случайной, т.к. пока не решена задача перехода с 1-ой страницы на 2-ую для просмотра подробной информации выбранного рецепта)
-// async function fetchRandomRecipeAndRender() {
-//   const apiUrl =
-//     "https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20meat%20fish%20salad&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192";
-
-//   try {
-//     const response = await fetch(apiUrl);
-//     const data = await response.json();
-//     console.log(data);
-//     const randomIndex = Math.floor(Math.random() * data.hits.length);
-//     const randomRecipe = data.hits[randomIndex].recipe;
-//     console.log(randomRecipe);
-//     // appendRecipeCard(recipeContainer, randomRecipe);
-//   } catch (error) {
-//     console.error("Ошибка при получении данных:", error);
-//   }
-// }
-
-// // Вызываем функцию для получения случайного рецепта и отрисовки карточки
-// fetchRandomRecipeAndRender();

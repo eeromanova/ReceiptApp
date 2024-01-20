@@ -35,12 +35,10 @@ main {
   }
 
   .card__btn {
-    text-decoration: none;
+    border: none;
     color: $colortextdark;
     border-radius: 25px;
     font-size: 1.05rem;
-    display: block;
-    margin: 0 auto;
     padding: 4% 25%;
     background-color: $bgcoloryellow;
     
