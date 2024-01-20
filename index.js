@@ -136,7 +136,8 @@ const seachRecipeButton = document.querySelector(".header__container_btn");
 
 seachRecipeButton.addEventListener("click", () => {
   console.log(headerInput.value);
-  let requestArr = [...headerInput.value];
+  let headerInputValue=headerInput.value.replace('Recipe','');
+  let requestArr = [...headerInputValue];
   for (let i = 0; i < requestArr.length; i++) {
     if (requestArr[i] == " ") {
       requestArr[i] = "%20";
@@ -147,8 +148,11 @@ seachRecipeButton.addEventListener("click", () => {
   console.log(url);
   getData();
   let str = `&q=${requestArr.join("")}`;
+  console.log(str);
   let n = url.indexOf(str);
+  console.log(n);
   let l = str.length;
+  console.log(l);
   url = `${url.slice(0, n)}${url.slice(n + l)}`;
   console.log(url);
 });
@@ -175,7 +179,8 @@ filterDropdowns.forEach((elem) => {
 filtersContainer.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
     console.log(headerInput.value);
-    let requestArr = [...headerInput.value];
+    let headerInputValue=headerInput.value.replace('Recipe','');
+  let requestArr = [...headerInputValue];
     for (let i = 0; i < requestArr.length; i++) {
       if (requestArr[i] == " ") {
         requestArr[i] = "%20";
@@ -191,26 +196,18 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        if (url.includes(headerInput.value)) {
-          url = `${url}&diet=${input.value}`;
-        } else {
-          url = `${url}&q=${requestArr.join("")}`;
-          url = `${url}&diet=${input.value}`;
-        }
+        url = `${url}&q=${requestArr.join("")}`;
+        url = `${url}&diet=${input.value}`;
       } else {
-        if (url.includes(headerInput.value)) {
+        url = `${url}&q=${requestArr.join("")}`;
           url = `${url}&health=${input.value}`;
-        } else {
-          url = `${url}&q=${requestArr.join("")}`;
-          url = `${url}&health=${input.value}`;
-        }
       }
       console.log(url);
       getData();
-      // let str2 = `&q=${requestArr.join("")}`;
-      // let n2 = url.indexOf(str2);
-      // let l2 = str2.length;
-      // url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      let str2 = `&q=${requestArr.join("")}`;
+      let n2 = url.indexOf(str2);
+      let l2 = str2.length;
+      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
     } else {
       if (
         input.value == "balanced" ||
@@ -224,7 +221,7 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         let str1 = `&diet=${input.value}`;
         let n1 = url.indexOf(str1);
         let l1 = str1.length;
-        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}`;
+        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}&q=${requestArr.join("")}`;
         console.log(url);
       } else {
         console.log(input.value);
@@ -232,18 +229,16 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         let str = `&health=${input.value}`;
         let n = url.indexOf(str);
         let l = str.length;
-        url = `${url.slice(0, n)}${url.slice(n + l)}`;
+        url = `${url.slice(0, n)}${url.slice(n + l)}&q=${requestArr.join("")}`;
         console.log(url);
       }
       console.log(url);
       getData();
       console.log(headerInput.value);
-      if (!headerInput.value == "" && url.includes(headerInput.value)) {
-        let str2 = `&q=${requestArr.join("")}`;
+      let str2 = `&q=${requestArr.join("")}`;
         let n2 = url.indexOf(str2);
         let l2 = str2.length;
         url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
-      }
     }
   });
 });
@@ -390,13 +385,13 @@ const setRecipes = () => {
   });
 };
 
-const buttonsChosen = container.querySelectorAll(".card__btn_chosen");
-buttonsChosen.forEach((button) => {
-  button.addEventListener("click", () => {
-    let id = button.parentNode.querySelector(".card__title");
-    localStorage.setItem("id", id);
-  });
-});
+// const buttonsChosen = container.querySelectorAll(".card__btn");
+// buttonsChosen.forEach((button) => {
+//   button.addEventListener("click", () => {
+//     let id = button.parentNode.querySelector(".card__title");
+//     localStorage.setItem("id", id);
+//   });
+// });
 
 // Функция для открытия страницы recipepage.html
 function openRecipeDetails(recipe) {
