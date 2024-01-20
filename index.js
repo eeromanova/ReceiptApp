@@ -28,6 +28,7 @@ async function getData() {
       console.log(result);
       console.log(result.hits);
       // console.log(result.hits[3].recipe.label);
+      localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
       setRecipes();
       return result;
     } else {
@@ -336,7 +337,9 @@ const clearFilters = () => {
       }
     }
     console.log(requestArr);
-    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join("")}`;
+    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join(
+      ""
+    )}`;
   } else {
     url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
   }
@@ -377,4 +380,16 @@ const container = document.querySelector(".container");
 //Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
+  const recipeCard = document.querySelector(".card");
+  recipeCard.addEventListener("click", () => {
+    openRecipeDetails(recipe);
+  }); // Добавляем обработчик события на клик по карточке
 };
+
+// Функция для открытия страницы с подробным описанием рецепта
+function openRecipeDetails(recipe) {
+  // Сохраняем выбранный рецепт в localStorage
+  localStorage.setItem("selectedRecipe", JSON.stringify(recipe));
+  // Открываем новую страницу с подробным описанием рецепта
+  window.open("recipepage.html", "_blank");
+}
