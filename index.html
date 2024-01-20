@@ -13,20 +13,19 @@
 <body>
   <header class="header">
     <div class="header__container_picturesLogo">
-      <img src="assets/img_header/pizza.png" alt="picrure pizza" class="header__container_pizza" />
-      <div class="phrase">
-        <p class="header__container_tittleFirst">Recipes are just</p>
-        <p class="header__container_tittleSecond">a click away!</p>
-      </div>
+      <img src="assets/img/pizza.png" alt="picrure pizza" />
+      <h1 class="header__container_tittleFirst">Recipes are<br><span class="header__container_tittleSecond">just
+          a click away!</span></h1>
     </div>
 
     <div class="header__container_search">
-      <h1 class="header__container_tittle">YumYum</h1>
-      <img src="assets/img_header/logofolk.png" class="header__container_img" alt="logo" />
+      <a href="#"><svg class="header__container_logo">
+          <use xlink:href="assets/img/sprite.svg#logo"></use>
+        </svg></a>
       <!-- Следующ div не отображается в десктопной версии -->
       <div class="phrase_mobile-version">
-        <p class="header__container_tittleFirst">Recipes are just</p>
-        <p class="header__container_tittleSecond">a click away!</p>
+        <h1 class="header__container_tittleFirst">Recipes are<br><span class="header__container_tittleSecond">just
+            a click away!</span></h1>
       </div>
       <input type="search" placeholder="Find the best recipes on the Internet..." class="header__container_input" />
 
@@ -159,13 +158,27 @@
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="assets/svg/logo.svg" alt="logo" />
+    <svg class="footer__logo" width="200" height="63">
+      <use xlink:href="assets/img/sprite.svg#logo"></use>
+    </svg>
     <div class="footer__social">
       <p class="footer__social-text">Follow us:</p>
       <div class="footer__social-items">
-        <a href="https://m.vk.com/" target="_blank"><img src="assets/svg/vk.svg" alt="vk" /></a>
-        <a href="https://web.tlgrm.app/" target="_blank"><img src="assets/svg/telegram.svg" alt="telegram" /></a>
-        <a href="https://ru.pinterest.com/" target="_blank"><img src="assets/svg/pinterest.svg" alt="pinterest" /></a>
+        <a href="https://m.vk.com/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#vk"></use>
+          </svg>
+        </a>
+        <a href="https://web.tlgrm.app/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#telegram"></use>
+          </svg>
+        </a>
+        <a href="https://ru.pinterest.com/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#pinterest"></use>
+          </svg>
+        </a>
       </div>
     </div>
     <p class="footer__copyright">
