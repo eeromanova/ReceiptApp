@@ -35,27 +35,30 @@ main {
   }
 
   .card__btn {
-    border-radius: 20px;
-    border: none;
-    width: 100%;
-    height: 40px;
+    text-decoration: none;
+    color: $colortextdark;
+    border-radius: 25px;
+    font-size: 1.05rem;
+    display: block;
+    margin: 0 auto;
+    padding: 4% 25%;
     background-color: $bgcoloryellow;
+    
     &:hover {
+      background-color: $bgcolororange;
+      color: $colortextlight;
       top: -2px;
       box-shadow: 0 4px 5px rgba(0,0,0,0.2);
-      font-size: 1.02rem;
     }
   }
 
   .card__title {
     font-weight: 600;
-    font-size: $text;
+    font-size: 1.05rem;
     margin: 2px 0 2px 2px;
-    text-align: start;
-
   }
 
-  .card__calories, .card__ingredients, .card__source {
+  .card__calories, .card__ingredients, .card__link {
     font-weight: 400;
     margin: 2px 0 4px 2px;   
   }
