@@ -385,14 +385,6 @@ const setRecipes = () => {
   });
 };
 
-// const buttonsChosen = container.querySelectorAll(".card__btn");
-// buttonsChosen.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     let id = button.parentNode.querySelector(".card__title");
-//     localStorage.setItem("id", id);
-//   });
-// });
-
 // Функция для открытия страницы recipepage.html
 function openRecipeDetails(recipe) {
   // Сохраняем выбранный рецепт в localStorage
