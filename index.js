@@ -370,7 +370,7 @@ const getRecipes = () => {
       <article class="card__description">
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
-      <a href="${url}" class="card__btn" target="_blank">Open recipe</a>
+      <a href="recipepage.html" class="card__btn" target="_blank">Open recipe</a>
       <a href="${url}" class="card__link" target="_blank">Source: ${source}</a>
       </article>
     </div>`;
