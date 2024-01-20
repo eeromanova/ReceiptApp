@@ -149,6 +149,7 @@ seachRecipeButton.addEventListener("click", () => {
   let n = url.indexOf(str);
   let l = str.length;
   url = `${url.slice(0, n)}${url.slice(n + l)}`;
+  console.log(url);
 });
 
 filterDropdowns.forEach((elem) => {
@@ -205,10 +206,10 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
       }
       console.log(url);
       getData();
-      let str2 = `&q=${requestArr.join("")}`;
-      let n2 = url.indexOf(str2);
-      let l2 = str2.length;
-      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      // let str2 = `&q=${requestArr.join("")}`;
+      // let n2 = url.indexOf(str2);
+      // let l2 = str2.length;
+      // url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
     } else {
       if (
         input.value == "balanced" ||
@@ -218,27 +219,25 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
+        console.log(url);
         let str1 = `&diet=${input.value}`;
         let n1 = url.indexOf(str1);
         let l1 = str1.length;
         url = `${url.slice(0, n1)}${url.slice(n1 + l1)}`;
-        if (!headerInput.value == "") {
-          url = `${url}&q=${requestArr.join("")}`;
-          console.log(url);
-        }
+        console.log(url);
       } else {
+        console.log(input.value);
+        console.log(url);
         let str = `&health=${input.value}`;
         let n = url.indexOf(str);
         let l = str.length;
         url = `${url.slice(0, n)}${url.slice(n + l)}`;
-        if (!headerInput.value == "") {
-          url = `${url}&q=${requestArr.join("")}`;
-          console.log(url);
-        }
+        console.log(url);
       }
       console.log(url);
       getData();
-      if (url.includes(headerInput.value)) {
+      console.log(headerInput.value);
+      if (!headerInput.value == "" && url.includes(headerInput.value)) {
         let str2 = `&q=${requestArr.join("")}`;
         let n2 = url.indexOf(str2);
         let l2 = str2.length;
@@ -336,7 +335,9 @@ const clearFilters = () => {
       }
     }
     console.log(requestArr);
-    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join("")}`;
+    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join(
+      ""
+    )}`;
   } else {
     url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
   }
@@ -346,6 +347,8 @@ const clearFilters = () => {
 
 clearButton.addEventListener("click", clearFilters);
 //Получение рецептов
+
+const container = document.querySelector(".container");
 
 const getRecipes = () => {
   return recipes
@@ -363,7 +366,7 @@ const getRecipes = () => {
       <p class="card__title">${label}</p>
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
-      <button class="card__btn">Open recipe</button>
+      <ul><li class="card__btn"><a htef='#' class='card__btn_chosen'>Open recipe </a></li></ul>
       <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
       </div>
     </div>`;
@@ -372,9 +375,18 @@ const getRecipes = () => {
     .join("");
 };
 
-const container = document.querySelector(".container");
 
-//Вывод рецептов на интерфейс
+// Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
 };
+
+const buttonsChosen=container.querySelectorAll('.card__btn_chosen');
+buttonsChosen.forEach((button)=>{
+  button.addEventListener('click', ()=>{
+    let id = button
+    .parentNode.querySelector(".card__title");
+  localStorage.setItem("id", id);
+  })
+})
+
