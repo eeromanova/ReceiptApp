@@ -1,19 +1,21 @@
-const recipeContainer = document.querySelector(".recipepage-container");
-const selectedRecipe = localStorage.getItem("selectedRecipe");
-const recipe = JSON.parse(selectedRecipe);
-
-window.addEventListener("load", appendRecipeCard);
-
+document.addEventListener("DOMContentLoaded", function () {
+  const recipeContainer = document.querySelector(".recipepage-container");
+  const selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
+  console.log(selectedRecipe);
+  const recipeEl = selectedRecipe.recipe;
+  console.log(recipeEl);
+  appendRecipeCard(recipeContainer, recipeEl);
+});
 // Функция, которая добавляет разметку в контейнер
-function appendRecipeCard(recipeContainer, recipe) {
-  const cardHtml = createRecipeCard(recipe);
+function appendRecipeCard(recipeContainer, selectedRecipe) {
+  const cardHtml = createRecipeCard(selectedRecipe);
   recipeContainer.innerHTML = cardHtml;
 }
 
 // Функция, которая принимает объект рецепта и возвращает строку HTML-разметки
-function createRecipeCard(recipe) {
+function createRecipeCard(selectedRecipe) {
   const { label, image, calories, ingredients, yield, healthLabels, url } =
-    recipe;
+    selectedRecipe;
   const roundedCalories = Math.round(calories);
   const ingredientsList = ingredients
     .map(
@@ -37,7 +39,7 @@ function createRecipeCard(recipe) {
                 <b>Health label:</b><br>
                 ${healthLabels}
             </div>
-  
+
   </div>
   <div class="recipepage__ingredients">
   <h3 class="recipepage__subtitle">Ingredients</h3>
@@ -50,6 +52,7 @@ function createRecipeCard(recipe) {
 
   return cardHtml;
 }
+
 // // Функция получения данных с API и добавление случайной карточки на страницу(случайной, т.к. пока не решена задача перехода с 1-ой страницы на 2-ую для просмотра подробной информации выбранного рецепта)
 // async function fetchRandomRecipeAndRender() {
 //   const apiUrl =
@@ -61,7 +64,8 @@ function createRecipeCard(recipe) {
 //     console.log(data);
 //     const randomIndex = Math.floor(Math.random() * data.hits.length);
 //     const randomRecipe = data.hits[randomIndex].recipe;
-//     appendRecipeCard(recipeContainer, randomRecipe);
+//     console.log(randomRecipe);
+//     // appendRecipeCard(recipeContainer, randomRecipe);
 //   } catch (error) {
 //     console.error("Ошибка при получении данных:", error);
 //   }

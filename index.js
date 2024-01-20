@@ -28,8 +28,8 @@ async function getData() {
       console.log(result);
       console.log(result.hits);
       // console.log(result.hits[3].recipe.label);
-      localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
       setRecipes();
+      localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
       return result;
     } else {
       console.log(`Ошибка: ${response.status}`);
@@ -382,10 +382,12 @@ const getRecipes = () => {
 // Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
-  const recipeCard = document.querySelector(".card");
-  recipeCard.addEventListener("click", () => {
-    openRecipeDetails(recipe);
-  }); // Добавляем обработчик события на клик по карточке
+  const recipeCards = document.querySelectorAll(".card");
+  recipeCards.forEach((recipeCard, index) => {
+    recipeCard.addEventListener("click", () => {
+      openRecipeDetails(recipes[index]); //Обработчик на .card
+    });
+  });
 };
 
 const buttonsChosen = container.querySelectorAll(".card__btn_chosen");
@@ -395,3 +397,11 @@ buttonsChosen.forEach((button) => {
     localStorage.setItem("id", id);
   });
 });
+
+// Функция для открытия страницы recipepage.html
+function openRecipeDetails(recipe) {
+  // Сохраняем выбранный рецепт в localStorage
+  localStorage.setItem("selectedRecipe", JSON.stringify(recipe));
+  // Открываем новую страницу recipepage.html
+  window.open("recipepage.html", "_blank");
+}
