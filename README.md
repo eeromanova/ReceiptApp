@@ -19,9 +19,8 @@
 
 <p>Adaptiv: desktop, mobile (<428), tablet (<768)</p>
 <p>Grid/flex-position</p>
-<p>Interaction with users (links and buttons)</p>
-<p>BEM</p>
-<p>Sass</p>
+<p>Interaction with users (styling of links and buttons)</p>
+<p>Sass/scss</p>
 
 ### Javascript
 <p>Request to free API Edamam</p>
