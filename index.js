@@ -28,6 +28,7 @@ async function getData() {
       console.log(result);
       console.log(result.hits);
       // console.log(result.hits[3].recipe.label);
+      localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
       setRecipes();
       return result;
     } else {
@@ -375,18 +376,19 @@ const getRecipes = () => {
     .join("");
 };
 
-
 // Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
+  const recipeCard = document.querySelector(".card");
+  recipeCard.addEventListener("click", () => {
+    openRecipeDetails(recipe);
+  }); // Добавляем обработчик события на клик по карточке
 };
 
-const buttonsChosen=container.querySelectorAll('.card__btn_chosen');
-buttonsChosen.forEach((button)=>{
-  button.addEventListener('click', ()=>{
-    let id = button
-    .parentNode.querySelector(".card__title");
-  localStorage.setItem("id", id);
-  })
-})
-
+const buttonsChosen = container.querySelectorAll(".card__btn_chosen");
+buttonsChosen.forEach((button) => {
+  button.addEventListener("click", () => {
+    let id = button.parentNode.querySelector(".card__title");
+    localStorage.setItem("id", id);
+  });
+});

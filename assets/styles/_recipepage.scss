@@ -98,6 +98,7 @@
     transform: scale(1.1);
   }
 }
+
 @media (max-width: 960px) {
   .recipepage-container {
     max-width: 870px;
@@ -201,86 +202,29 @@
     }
   }
 }
-.header__recipe {
+#recipepageHeader {
   display: flex;
-  align-items: flex-end;
-  height: 200px;
-  margin: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
-  background-color: $bgcoloryellow;
-  @media (max-width: 460px){
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
-.header__container_recipe {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-
-}
-.header__logocontainer_recipe {
-  display: flex;
-  align-items: center;
-}
-.header__title_recipe {
-  font-family: Nunito;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 800;
-  color: $colortextlight;
-  @media (max-width: 460px) {
-    font-size: 35px;
-    font-style: normal;
-    font-weight: 600;
-  }
-  @media (max-width: 280px) {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-  }
-}
-.header__img_recipe {
-  width: 60px;
-  height: 60px;
-  @media (max-width: 460px){
-    width: 50px;
-  height: 50px;
-  }
-  @media (max-width: 280px){
-    width: 40px;
-  height: 40px;
-  }
-}
-.header__text {
-  font-family: Nunito;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  font-size: 30px;
-  font-style: normal;
-  color: $bgcolororange;
-  @media (max-width: 460px) {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-  }
-}
-.header__recipe_btn {
-  width: 161px;
+#recipepageBtn {
   height: 52px;
-  border: none;
-  border-radius: 25px;
-  background-color: $bgcolororange;
-  text-decoration: none;
-  color: $colortextdark;
   text-align: center;
-  padding-top: 13px;
-  margin-bottom: 10px;
-  margin-left: 20px;
+  padding: 15px 10px;
+}
+#recipepageHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#recipepageBtn {
+  height: 50px;
+  text-align: center;
+  padding: 13px 5px;
+  @media (max-width: 676px) {
+    height: 40px;
+    text-align: center;
+    padding: 9px 5px;
+  }
 }

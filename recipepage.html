@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/styles/normalize.css" />
-    <link rel="stylesheet" href="assets/styles/style.css" />
-    <link rel="icon" href="assets/img/favicon.png" type="img/png" />
-    <title>Recipes and Food</title>
-  </head>
 
-  <body>
-    <header class="header__recipe">
-      <div class="header__container_recipe">
-        <div class="header__logocontainer_recipe">
-        <h1 class="header__title_recipe">YumYum</h1>
-        <img
-          src="assets/img_header/logofolk.png"
-          class="header__img_recipe"
-          alt="logo"
-        /></div>
-        <p class="header__text">Recipes are just a click away</p>
-      </div>
-      <a class="header__recipe_btn" href="index.html">Home page</a>
-    </header>
-    <main>
-      <section class="recipepage-container"></section>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/styles/normalize.css" />
+  <link rel="stylesheet" href="assets/styles/style.css" />
+  <link rel="icon" href="assets/img/favicon.png" type="img/png" />
+  <title>Recipes and Food</title>
+</head>
 
-    <footer class="footer">
-      <img class="footer__logo" src="assets/svg/logo.svg" alt="logo" />
-      <div class="footer__social">
-        <p class="footer__social-text">Follow us:</p>
-        <div class="footer__social-items">
-          <a href="https://m.vk.com/" target="_blank"
-            ><img src="assets/svg/vk.svg" alt="vk"
-          /></a>
-          <a href="https://web.tlgrm.app/" target="_blank"
-            ><img src="assets/svg/telegram.svg" alt="telegram"
-          /></a>
-          <a href="https://ru.pinterest.com/" target="_blank"
-            ><img src="assets/svg/pinterest.svg" alt="pinterest"
-          /></a>
-        </div>
+<body>
+  <header class="header">
+    <div class="header__container_picturesLogo">
+      <img src="assets/img/pizza.png" alt="picrure pizza" />
+      <h1 class="header__container_tittleFirst">Recipes are<br><span class="header__container_tittleSecond">just
+          a click away!</span></h1>
+    </div>
+
+    <div class="header__container_search" id="recipepageHeader">
+      <a href="#"><svg class="header__container_logo">
+          <use xlink:href="assets/img/sprite.svg#logo"></use>
+        </svg></a>
+      <!-- Следующ div не отображается в десктопной версии -->
+      <div class="phrase_mobile-version">
+        <h1 class="header__container_tittleFirst">Recipes are<br><span class="header__container_tittleSecond">just
+            a click away!</span></h1>
       </div>
-      <p class="footer__copyright">
-        <a href="https://itgirlschool.com/ " target="_blank"
-          >&copy; ITGirlschool, 2024</a
-        >
-      </p>
-    </footer>
-    <!-- <script src="index.js"></script> -->
-    <script src="recipepage.js"></script>
-  </body>
+      <a class="header__container_btn" id="recipepageBtn" href="index.html">Home page</a>
+    </div>
+  </header>
+  <main>
+    <section class="recipepage-container"></section>
+  </main>
+
+  <footer class="footer">
+    <svg class="footer__logo" width="200" height="63">
+      <use xlink:href="assets/img/sprite.svg#logo"></use>
+    </svg>
+    <div class="footer__social">
+      <p class="footer__social-text">Follow us:</p>
+      <div class="footer__social-items">
+        <a href="https://m.vk.com/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#vk"></use>
+          </svg>
+        </a>
+        <a href="https://web.tlgrm.app/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#telegram"></use>
+          </svg>
+        </a>
+        <a href="https://ru.pinterest.com/" target="_blank">
+          <svg width="36" height="36">
+            <use xlink:href="assets/img/sprite.svg#pinterest"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer__copyright">
+      <a href="https://itgirlschool.com/ " target="_blank">&copy; ITGirlschool, 2024</a>
+    </p>
+  </footer>
+  <script src="index.js"></script>
+  <script src="recipepage.js"></script>
+
+</body>
+
 </html>
