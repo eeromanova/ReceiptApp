@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const recipeContainer = document.querySelector(".recipepage-container");
   const selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
   console.log(selectedRecipe);
-  appendRecipeCard(recipeContainer, selectedRecipe);
+  const recipeEl = selectedRecipe.recipe;
+  console.log(recipeEl);
+  appendRecipeCard(recipeContainer, recipeEl);
 });
 // Функция, которая добавляет разметку в контейнер
 function appendRecipeCard(recipeContainer, selectedRecipe) {
@@ -37,7 +39,7 @@ function createRecipeCard(selectedRecipe) {
                 <b>Health label:</b><br>
                 ${healthLabels}
             </div>
-  
+
   </div>
   <div class="recipepage__ingredients">
   <h3 class="recipepage__subtitle">Ingredients</h3>
@@ -62,7 +64,8 @@ function createRecipeCard(selectedRecipe) {
 //     console.log(data);
 //     const randomIndex = Math.floor(Math.random() * data.hits.length);
 //     const randomRecipe = data.hits[randomIndex].recipe;
-//     appendRecipeCard(recipeContainer, randomRecipe);
+//     console.log(randomRecipe);
+//     // appendRecipeCard(recipeContainer, randomRecipe);
 //   } catch (error) {
 //     console.error("Ошибка при получении данных:", error);
 //   }
