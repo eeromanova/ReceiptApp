@@ -370,7 +370,7 @@ const getRecipes = () => {
       <article class="card__description">
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
-      <a href="recipepage.html" class="card__btn" target="_blank">Open recipe</a>
+      <button class="card__btn">Open recipe</button>
       <a href="${url}" class="card__link" target="_blank">Source: ${source}</a>
       </article>
     </div>`;
@@ -382,7 +382,7 @@ const getRecipes = () => {
 // Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
-  const recipeCards = document.querySelectorAll(".card");
+  const recipeCards = document.querySelectorAll(".card__btn");
   recipeCards.forEach((recipeCard, index) => {
     recipeCard.addEventListener("click", () => {
       openRecipeDetails(recipes[index]); //Обработчик на .card
