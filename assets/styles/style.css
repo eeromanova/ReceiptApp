@@ -265,7 +265,7 @@ body {
 }
 @media (max-width: 330px) {
   .filter-dropdown_main {
-    width: 70px;
+    width: 75px;
     height: 30px;
     font-size: 10px;
   }
@@ -285,14 +285,14 @@ body {
 }
 @media (max-width: 480px) {
   .filter-dropdown_orange {
-    width: 74px;
+    width: 100px;
     height: 30px;
     font-size: 12px;
   }
 }
-@media (max-width: 280px) {
+@media (max-width: 330px) {
   .filter-dropdown_orange {
-    width: 60px;
+    width: 75px;
     height: 30px;
     font-size: 10px;
   }
@@ -345,16 +345,19 @@ body {
 }
 @media (max-width: 480px) {
   .clearButton {
-    width: 100px;
+    grid-area: 2/1/3/4;
+    width: 150px;
     height: 30px;
     justify-self: center;
+    background-color: #FFFFFF;
   }
 }
 @media (max-width: 330px) {
   .clearButton {
-    width: 70px;
+    width: 100px;
     height: 30px;
     font-size: 10px;
+    background-color: #FFFFFF;
   }
 }
 
