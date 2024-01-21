@@ -154,6 +154,7 @@ seachRecipeButton.addEventListener("click", () => {
 filterDropdowns.forEach((elem) => {
   elem.addEventListener("mouseover", () => {
     elem.querySelector(".dropdown-child").classList.add("dropdown-child_open");
+
     elem
       .querySelector(".dropdown-child")
       .classList.remove("dropdown-child_closed");
@@ -336,7 +337,9 @@ const clearFilters = () => {
       }
     }
     console.log(requestArr);
-    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join("")}`;
+    url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join(
+      ""
+    )}`;
   } else {
     url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
   }
