@@ -29,6 +29,7 @@ async function getData() {
       console.log(result.hits);
       // console.log(result.hits[3].recipe.label);
       setRecipes();
+      localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
       return result;
     } else {
       console.log(`Ошибка: ${response.status}`);
@@ -135,7 +136,8 @@ const seachRecipeButton = document.querySelector(".header__container_btn");
 
 seachRecipeButton.addEventListener("click", () => {
   console.log(headerInput.value);
-  let requestArr = [...headerInput.value];
+  let headerInputValue=headerInput.value.replace('Recipe','');
+  let requestArr = [...headerInputValue];
   for (let i = 0; i < requestArr.length; i++) {
     if (requestArr[i] == " ") {
       requestArr[i] = "%20";
@@ -146,9 +148,13 @@ seachRecipeButton.addEventListener("click", () => {
   console.log(url);
   getData();
   let str = `&q=${requestArr.join("")}`;
+  console.log(str);
   let n = url.indexOf(str);
+  console.log(n);
   let l = str.length;
+  console.log(l);
   url = `${url.slice(0, n)}${url.slice(n + l)}`;
+  console.log(url);
 });
 
 filterDropdowns.forEach((elem) => {
@@ -174,7 +180,8 @@ filterDropdowns.forEach((elem) => {
 filtersContainer.querySelectorAll("input").forEach((input) => {
   input.addEventListener("change", () => {
     console.log(headerInput.value);
-    let requestArr = [...headerInput.value];
+    let headerInputValue=headerInput.value.replace('Recipe','');
+  let requestArr = [...headerInputValue];
     for (let i = 0; i < requestArr.length; i++) {
       if (requestArr[i] == " ") {
         requestArr[i] = "%20";
@@ -190,19 +197,11 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        if (url.includes(headerInput.value)) {
-          url = `${url}&diet=${input.value}`;
-        } else {
-          url = `${url}&q=${requestArr.join("")}`;
-          url = `${url}&diet=${input.value}`;
-        }
+        url = `${url}&q=${requestArr.join("")}`;
+        url = `${url}&diet=${input.value}`;
       } else {
-        if (url.includes(headerInput.value)) {
+        url = `${url}&q=${requestArr.join("")}`;
           url = `${url}&health=${input.value}`;
-        } else {
-          url = `${url}&q=${requestArr.join("")}`;
-          url = `${url}&health=${input.value}`;
-        }
       }
       console.log(url);
       getData();
@@ -219,32 +218,28 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
+        console.log(url);
         let str1 = `&diet=${input.value}`;
         let n1 = url.indexOf(str1);
         let l1 = str1.length;
-        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}`;
-        if (!headerInput.value == "") {
-          url = `${url}&q=${requestArr.join("")}`;
-          console.log(url);
-        }
+        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}&q=${requestArr.join("")}`;
+        console.log(url);
       } else {
+        console.log(input.value);
+        console.log(url);
         let str = `&health=${input.value}`;
         let n = url.indexOf(str);
         let l = str.length;
-        url = `${url.slice(0, n)}${url.slice(n + l)}`;
-        if (!headerInput.value == "") {
-          url = `${url}&q=${requestArr.join("")}`;
-          console.log(url);
-        }
+        url = `${url.slice(0, n)}${url.slice(n + l)}&q=${requestArr.join("")}`;
+        console.log(url);
       }
       console.log(url);
       getData();
-      if (url.includes(headerInput.value)) {
-        let str2 = `&q=${requestArr.join("")}`;
+      console.log(headerInput.value);
+      let str2 = `&q=${requestArr.join("")}`;
         let n2 = url.indexOf(str2);
         let l2 = str2.length;
         url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
-      }
     }
   });
 });
@@ -350,6 +345,8 @@ const clearFilters = () => {
 clearButton.addEventListener("click", clearFilters);
 //Получение рецептов
 
+const container = document.querySelector(".container");
+
 const getRecipes = () => {
   return recipes
     .map(
@@ -362,22 +359,37 @@ const getRecipes = () => {
         recipe: { source },
       }) => {
         return `<div class="card">
+      <div>
       <img class="card__img" src="${image}" alt="${label}"/>
-      <p class="card__title">${label}</p>
+      <h2 class="card__title">${label}</h2>
+      </div>
+      <article class="card__description">
       <p class="card__ingredients">${ingredientLines.length} ingredients</p>
       <p class="card__calories">${Math.round(calories)} calories</p>
       <button class="card__btn">Open recipe</button>
-      <div class="card__source"><a href="${url}" class="card__link">Source: ${source}</a>
-      </div>
+      <a href="${url}" class="card__link" target="_blank">Source: ${source}</a>
+      </article>
     </div>`;
       }
     )
     .join("");
 };
 
-const container = document.querySelector(".container");
-
-//Вывод рецептов на интерфейс
+// Вывод рецептов на интерфейс
 const setRecipes = () => {
   container.innerHTML = getRecipes();
+  const recipeCards = document.querySelectorAll(".card__btn");
+  recipeCards.forEach((recipeCard, index) => {
+    recipeCard.addEventListener("click", () => {
+      openRecipeDetails(recipes[index]); //Обработчик на .card
+    });
+  });
 };
+
+// Функция для открытия страницы recipepage.html
+function openRecipeDetails(recipe) {
+  // Сохраняем выбранный рецепт в localStorage
+  localStorage.setItem("selectedRecipe", JSON.stringify(recipe));
+  // Открываем новую страницу recipepage.html
+  window.open("recipepage.html", "_blank");
+}

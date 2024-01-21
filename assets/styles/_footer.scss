@@ -13,21 +13,26 @@
   .footer__logo {
     width: 200px;
     margin: 0 10px;
+    fill: $bgcolororange;
   }
   .footer__social {
     display: flex;
     align-items: center;
     margin: 5px;
+  }
+  .footer__social-items {
     a {
       display: inline-block;
       margin: 5px;
+      width: 36px;
+      height: 36px;
       &:hover {
         transform: scale(1.2);
       }
     }
   }
   .footer__social-text {
-    font-size: 1.1em;
+    font-size: 16px;
     margin: 5px;
   }
 }

@@ -1,5 +1,3 @@
-// @import "./vars";
-
 main {
   background-color: $bgcolorgrey;
   font-family: $fontmain;
@@ -13,6 +11,7 @@ main {
   justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 65px;
 }
 
 .card {
@@ -21,6 +20,14 @@ main {
   border-radius: 10px;
   background-color: $bgcolorwhite;
   max-width: min-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  &:hover {
+    top: -2px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+  }
 
   .card__img {
     max-width: 200px;
@@ -28,21 +35,31 @@ main {
   }
 
   .card__btn {
-    border-radius: 20px;
     border: none;
-    width: 100%;
-    height: 40px;
-    //background-color: $bgcolorgrey;
+    color: $colortextdark;
+    border-radius: 25px;
+    font-size: 1.05rem;
+    padding: 4% 25%;
+    border: none;
     background-color: $bgcoloryellow;
+    
+    &:hover {
+      background-color: $bgcolororange;
+      color: $colortextlight;
+      top: -2px;
+      box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+    }
   }
 
   .card__title {
     font-weight: 600;
-    
+    font-size: 1.05rem;
+    margin: 2px 0 2px 2px;
   }
 
-  .card__calories, .card__ingredients, .card__source {
+  .card__calories, .card__ingredients, .card__link {
     font-weight: 400;
+    margin: 2px 0 4px 2px;   
   }
 
   .card__calories {
@@ -52,9 +69,10 @@ main {
   .card__link {
     text-decoration: none;
     color: $colortextgrey;
-    font-size: small;
-    margin: 10px;
-    padding: 10px;
-    
+    font-size: 0.85rem;
+    &:hover {
+      top: -2px;
+      font-size: 0.9rem;
+    }
   }
 }
