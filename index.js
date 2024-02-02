@@ -1,5 +1,4 @@
 let recipes = []; //для вывода карточек
-let result = "{}";
 let checkboxesAllergy = [];
 let checkboxesDiet = [];
 let calories = {
@@ -9,13 +8,13 @@ let calories = {
 
 let checkboxesAll = [];
 let recipe = [];
-let headerInput = document.querySelector(".header__container_input");
+const headerInput = document.querySelector(".header__container_input");
 
-let findResipe = document.querySelector(".options_rescipes");
+const findResipe = document.querySelector(".options_rescipes");
 
-let header = document.querySelector(".header");
+const header = document.querySelector(".header");
 
-let orderRecipes = document.querySelector(".orderRecipes");
+const orderRecipes = document.querySelector(".orderRecipes");
 let url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192`;
 
 let arr = [];
@@ -26,7 +25,8 @@ async function getData() {
       const result = await response.json();
       recipes = result.hits;
       console.log(result);
-      console.log(result.hits);
+      console.log(recipes);
+      console.log(recipes[0].recipe.calories);
       // console.log(result.hits[3].recipe.label);
       setRecipes();
       localStorage.setItem("recipes", JSON.stringify(recipes)); // Сохраняем полученные данные в localStorage
@@ -134,27 +134,37 @@ headerInput.addEventListener("input", handleInputEvent);
 
 const seachRecipeButton = document.querySelector(".header__container_btn");
 
-seachRecipeButton.addEventListener("click", () => {
-  console.log(headerInput.value);
-  let headerInputValue=headerInput.value.replace('Recipe','');
-  let requestArr = [...headerInputValue];
-  for (let i = 0; i < requestArr.length; i++) {
-    if (requestArr[i] == " ") {
-      requestArr[i] = "%20";
+const getSearchURL = () => {
+  if (!headerInput.value == "") {
+    let headerInputValue = headerInput.value.replace("Recipe", "");
+    let requestArr = [...headerInputValue];
+    for (let i = 0; i < requestArr.length; i++) {
+      if (requestArr[i] == " ") {
+        requestArr[i] = "%20";
+      }
     }
+    console.log(requestArr);
+    url = `${url}&q=${requestArr.join("")}`;
+    console.log(url);
+    getData();
+    let str = `&q=${requestArr.join("")}`;
+    console.log(str);
+    let n = url.indexOf(str);
+    console.log(n);
+    let l = str.length;
+    console.log(l);
+    url = `${url.slice(0, n)}${url.slice(n + l)}`;
+    console.log(url);
+  } else {
+    getData();
   }
-  console.log(requestArr);
-  url = `${url}&q=${requestArr.join("")}`;
-  console.log(url);
-  getData();
-  let str = `&q=${requestArr.join("")}`;
-  console.log(str);
-  let n = url.indexOf(str);
-  console.log(n);
-  let l = str.length;
-  console.log(l);
-  url = `${url.slice(0, n)}${url.slice(n + l)}`;
-  console.log(url);
+};
+
+seachRecipeButton.addEventListener("click", getSearchURL);
+headerInput.addEventListener("keyup", (event)=> {
+  if (event.сode === "Enter") {
+    getSearchURL;
+  }
 });
 
 filterDropdowns.forEach((elem) => {
@@ -176,11 +186,11 @@ filterDropdowns.forEach((elem) => {
   });
 });
 
-filtersContainer.querySelectorAll("input").forEach((input) => {
+filtersContainer.querySelectorAll(".input").forEach((input) => {
   input.addEventListener("change", () => {
     console.log(headerInput.value);
-    let headerInputValue=headerInput.value.replace('Recipe','');
-  let requestArr = [...headerInputValue];
+    let headerInputValue = headerInput.value.replace("Recipe", "");
+    let requestArr = [...headerInputValue];
     for (let i = 0; i < requestArr.length; i++) {
       if (requestArr[i] == " ") {
         requestArr[i] = "%20";
@@ -200,7 +210,7 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         url = `${url}&diet=${input.value}`;
       } else {
         url = `${url}&q=${requestArr.join("")}`;
-          url = `${url}&health=${input.value}`;
+        url = `${url}&health=${input.value}`;
       }
       console.log(url);
       getData();
@@ -221,7 +231,9 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
         let str1 = `&diet=${input.value}`;
         let n1 = url.indexOf(str1);
         let l1 = str1.length;
-        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}&q=${requestArr.join("")}`;
+        url = `${url.slice(0, n1)}${url.slice(n1 + l1)}&q=${requestArr.join(
+          ""
+        )}`;
         console.log(url);
       } else {
         console.log(input.value);
@@ -236,14 +248,14 @@ filtersContainer.querySelectorAll("input").forEach((input) => {
       getData();
       console.log(headerInput.value);
       let str2 = `&q=${requestArr.join("")}`;
-        let n2 = url.indexOf(str2);
-        let l2 = str2.length;
-        url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      let n2 = url.indexOf(str2);
+      let l2 = str2.length;
+      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
     }
   });
 });
 
-allergyFilter.querySelectorAll("input").forEach((input) => {
+allergyFilter.querySelectorAll(".input").forEach((input) => {
   input.addEventListener("change", () => {
     checkboxesAllergy = allergyFilter.querySelectorAll(
       "input[type=checkbox]:checked"
@@ -265,7 +277,7 @@ allergyFilter.querySelectorAll("input").forEach((input) => {
   });
 });
 
-dietFilter.querySelectorAll("input").forEach((input) => {
+dietFilter.querySelectorAll(".input").forEach((input) => {
   input.addEventListener("change", () => {
     checkboxesDiet = dietFilter.querySelectorAll(
       "input[type=checkbox]:checked"
@@ -313,6 +325,8 @@ maxCal.addEventListener("change", () => {
   }
 });
 
+
+
 const clearFilters = () => {
   minCal.value = "";
   maxCal.value = "";
@@ -339,12 +353,24 @@ const clearFilters = () => {
   }
   console.log(url);
   getData();
+  let headerInputValue = headerInput.value.replace("Recipe", "");
+  let requestArr = [...headerInputValue];
+  for (let i = 0; i < requestArr.length; i++) {
+    if (requestArr[i] == " ") {
+      requestArr[i] = "%20";
+    }
+  }
+  let str2 = `&q=${requestArr.join("")}`;
+  let n2 = url.indexOf(str2);
+  let l2 = str2.length;
+  url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
 };
 
 clearButton.addEventListener("click", clearFilters);
 //Получение рецептов
 
 const container = document.querySelector(".container");
+
 
 const getRecipes = () => {
   return recipes
