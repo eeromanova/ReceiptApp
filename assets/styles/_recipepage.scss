@@ -5,7 +5,7 @@
   .recipepage {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 204px 33px 113px repeat(2, 1fr);
+    grid-template-rows: 204px 33px 113px 300px 113px;
     justify-items: center;
     max-height: 2000px;
     border-radius: 30px;
@@ -63,6 +63,7 @@
     grid-area: 4/2/5/3;
     padding: 40px 20px;
     margin-bottom: 20px;
+    word-wrap: break-word;
   }
 
   .recipepage__nutrition-item {
@@ -83,7 +84,7 @@
 }
 .recipepage__btn {
   grid-area: 5/2/6/3;
-  margin: 3.1em 4em;
+  align-self: center;
   width: 280px;
   height: 55px;
   background-color: $bgcolororange;
@@ -106,16 +107,9 @@
       padding: 0;
       border-radius: 20px;
     }
-    .recipepage__title {
-      h2 {
-        margin: 0;
-      }
-    }
+
     .recipepage__info {
       padding-left: 30px;
-    }
-    .recipepage__btn {
-      margin: 2.5em 3.2em;
     }
   }
 }
@@ -136,6 +130,9 @@
     .recipepage__title {
       text-align: center;
       font-size: 1.2em;
+      h2 {
+        margin: 0;
+      }
     }
     .recipepage__info {
       padding: 0;
@@ -189,6 +186,9 @@
     }
     .recipepage__subtitle {
       font-size: 1.2em;
+    }
+    .recipepage__info {
+      padding: 0;
     }
     .recipepage__nutrition-item {
       font-size: 0.8em;
