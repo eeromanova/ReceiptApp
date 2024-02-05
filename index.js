@@ -79,7 +79,7 @@ const dietFilter = document.getElementById("diet__box");
 const caloriesFilter = document.getElementById("calories__box");
 
 //Полученные данные из API перебрать, каждый элемент добавить вмассив. Поиск существляется совпадением input.value и элементовмассива
-let filterContainer = document.querySelector(".filter__container");
+const filterContainer = document.querySelector(".filter__container");
 //let inputValue = headerInput.value;
 getData().then((data) => {
   if (data && Array.isArray(data.hits)) {
