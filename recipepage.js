@@ -1,18 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const recipeContainer = document.querySelector(".recipepage-container");
-
-  const selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
-  console.log(selectedRecipe);
-  const recipeEl = selectedRecipe.recipe;
-  console.log(recipeEl);
-  appendRecipeCard(recipeContainer, recipeEl);
-});
-// Функция, которая добавляет разметку в контейнер
-function appendRecipeCard(recipeContainer, selectedRecipe) {
-  const cardHtml = createRecipeCard(selectedRecipe);
-  recipeContainer.innerHTML = cardHtml;
-}
-
 // Функция, которая принимает объект рецепта и возвращает строку HTML-разметки
 function createRecipeCard(selectedRecipe) {
   const { label, image, calories, ingredients, yield, healthLabels, url } =
@@ -53,3 +38,18 @@ function createRecipeCard(selectedRecipe) {
 
   return cardHtml;
 }
+
+// Функция, которая добавляет разметку в контейнер
+function appendRecipeCard(recipeContainer, selectedRecipe) {
+  const cardHtml = createRecipeCard(selectedRecipe);
+  recipeContainer.innerHTML = cardHtml;
+}
+
+//Обработчик события
+document.addEventListener("DOMContentLoaded", function () {
+  const recipeContainer = document.querySelector(".recipepage-container");
+
+  const selectedRecipe = JSON.parse(localStorage.getItem("selectedRecipe"));
+  const recipeEl = selectedRecipe.recipe;
+  appendRecipeCard(recipeContainer, recipeEl);
+});
