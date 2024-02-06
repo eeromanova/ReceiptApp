@@ -24,7 +24,6 @@ async function getData() {
     if (response.ok) {
       const result = await response.json();
       recipes = result.hits;
-      console.log(result);
       console.log(recipes);
       console.log(recipes[0].recipe.calories);
       // console.log(result.hits[3].recipe.label);
@@ -134,36 +133,48 @@ headerInput.addEventListener("input", handleInputEvent);
 
 const seachRecipeButton = document.querySelector(".header__container_btn");
 
+let requestArr;
+
+const replaceSearch = () => {
+  let headerInputValue = headerInput.value.replace("Recipe", "");
+  requestArr = [...headerInputValue];
+  for (let i = 0; i < requestArr.length; i++) {
+    if (requestArr[i] == " ") {
+      requestArr[i] = "%20";
+    }
+  }
+  return requestArr;
+};
+
+const joinSearchUrl = () => {
+  url = `${url}&q=${requestArr.join("")}`;
+  return url;
+};
+
+const sliceSearchUrl = (x) => {
+  let str = `&${x}=${requestArr.join("")}`;
+  let n = url.indexOf(str);
+  let l = str.length;
+  url = `${url.slice(0, n)}${url.slice(n + l)}`;
+  return url;
+};
+
 const getSearchURL = () => {
   if (!headerInput.value == "") {
-    let headerInputValue = headerInput.value.replace("Recipe", "");
-    let requestArr = [...headerInputValue];
-    for (let i = 0; i < requestArr.length; i++) {
-      if (requestArr[i] == " ") {
-        requestArr[i] = "%20";
-      }
-    }
-    console.log(requestArr);
-    url = `${url}&q=${requestArr.join("")}`;
-    console.log(url);
+    replaceSearch();
+    joinSearchUrl();
     getData();
-    let str = `&q=${requestArr.join("")}`;
-    console.log(str);
-    let n = url.indexOf(str);
-    console.log(n);
-    let l = str.length;
-    console.log(l);
-    url = `${url.slice(0, n)}${url.slice(n + l)}`;
-    console.log(url);
+    sliceSearchUrl("q");
   } else {
     getData();
   }
+  suggestionsDiv.innerHTML = "";
 };
 
 seachRecipeButton.addEventListener("click", getSearchURL);
-headerInput.addEventListener("keyup", (event)=> {
-  if (event.сode === "Enter") {
-    getSearchURL;
+headerInput.addEventListener("keyup", (event) => {
+  if (event.code === "Enter")  {
+    getSearchURL();
   }
 });
 
@@ -189,13 +200,7 @@ filterDropdowns.forEach((elem) => {
 filtersContainer.querySelectorAll(".input").forEach((input) => {
   input.addEventListener("change", () => {
     console.log(headerInput.value);
-    let headerInputValue = headerInput.value.replace("Recipe", "");
-    let requestArr = [...headerInputValue];
-    for (let i = 0; i < requestArr.length; i++) {
-      if (requestArr[i] == " ") {
-        requestArr[i] = "%20";
-      }
-    }
+    replaceSearch();
 
     if (input.checked) {
       if (
@@ -206,18 +211,15 @@ filtersContainer.querySelectorAll(".input").forEach((input) => {
         input.value == "low-fat" ||
         input.value == "low-sodium"
       ) {
-        url = `${url}&q=${requestArr.join("")}`;
+        joinSearchUrl();
         url = `${url}&diet=${input.value}`;
       } else {
-        url = `${url}&q=${requestArr.join("")}`;
+        joinSearchUrl();
         url = `${url}&health=${input.value}`;
       }
       console.log(url);
       getData();
-      let str2 = `&q=${requestArr.join("")}`;
-      let n2 = url.indexOf(str2);
-      let l2 = str2.length;
-      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      sliceSearchUrl("q");
     } else {
       if (
         input.value == "balanced" ||
@@ -247,10 +249,7 @@ filtersContainer.querySelectorAll(".input").forEach((input) => {
       console.log(url);
       getData();
       console.log(headerInput.value);
-      let str2 = `&q=${requestArr.join("")}`;
-      let n2 = url.indexOf(str2);
-      let l2 = str2.length;
-      url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+      sliceSearchUrl("q");
     }
   });
 });
@@ -310,6 +309,24 @@ minCal.addEventListener("change", () => {
   }
 });
 
+const filterCalMin = () => {
+  console.log(minCal.value);
+  recipes = recipes.filter((item) => item.recipe.calories > minCal.value);
+  console.log(recipes);
+  getRecipes();
+  setRecipes();
+};
+
+minCal.addEventListener("keyup", (event) => {
+  if (event.code === "Enter") {
+    if (!minCal.value == "") {
+      filterCalMin();
+    }
+  } else {
+    getData();
+  }
+});
+
 maxCal.addEventListener("change", () => {
   calories.to = maxCal.value;
   if (!maxCal.value == "") {
@@ -324,8 +341,22 @@ maxCal.addEventListener("change", () => {
       .classList.remove("filter-dropdown_orange");
   }
 });
+const filterCalMax = () => {
+  recipes = recipes.filter((item) => item.recipe.calories < maxCal.value);
+  console.log(recipes);
+  getRecipes();
+  setRecipes();
+};
 
-
+maxCal.addEventListener("keyup", (event) => {
+  if (event.code === "Enter") {
+    if (!maxCal.value == "") {
+      filterCalMax();
+    }
+  } else {
+    getData();
+  }
+});
 
 const clearFilters = () => {
   minCal.value = "";
@@ -338,13 +369,7 @@ const clearFilters = () => {
     button.classList.add("filter-dropdown_main");
   });
   if (!headerInput.value == "") {
-    let requestArr = [...headerInput.value];
-    for (let i = 0; i < requestArr.length; i++) {
-      if (requestArr[i] == " ") {
-        requestArr[i] = "%20";
-      }
-    }
-    console.log(requestArr);
+    replaceSearch();
     url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join(
       ""
     )}`;
@@ -353,24 +378,15 @@ const clearFilters = () => {
   }
   console.log(url);
   getData();
-  let headerInputValue = headerInput.value.replace("Recipe", "");
-  let requestArr = [...headerInputValue];
-  for (let i = 0; i < requestArr.length; i++) {
-    if (requestArr[i] == " ") {
-      requestArr[i] = "%20";
-    }
-  }
-  let str2 = `&q=${requestArr.join("")}`;
-  let n2 = url.indexOf(str2);
-  let l2 = str2.length;
-  url = `${url.slice(0, n2)}${url.slice(n2 + l2)}`;
+  replaceSearch();
+  joinSearchUrl();
+  sliceSearchUrl("q");
 };
 
 clearButton.addEventListener("click", clearFilters);
 //Получение рецептов
 
 const container = document.querySelector(".container");
-
 
 const getRecipes = () => {
   return recipes
