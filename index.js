@@ -36,13 +36,11 @@ async function getData() {
   } catch (err) {
     console.log(err);
   }
+  return recipes;
 }
 document.addEventListener("DOMContentLoaded", getData);
 
 const filterDropdowns = document.querySelectorAll(".filter-dropdown");
-const filterDropdownButtons = document.querySelectorAll(
-  ".filter-dropdown_main"
-);
 const filtersContainer = document.querySelector(".filter__container");
 
 filterDropdowns.forEach((elem) => {
@@ -171,10 +169,18 @@ const getSearchURL = () => {
   suggestionsDiv.innerHTML = "";
 };
 
-seachRecipeButton.addEventListener("click", getSearchURL);
+seachRecipeButton.addEventListener("click", () => {
+  getSearchURL();
+  minCal.value = "";
+  maxCal.value = "";
+  removeClass("calories");
+});
 headerInput.addEventListener("keyup", (event) => {
-  if (event.code === "Enter")  {
+  if (event.code === "Enter" && !headerInput.value == "") {
     getSearchURL();
+    minCal.value = "";
+    maxCal.value = "";
+    removeClass("calories");
   }
 });
 
@@ -260,18 +266,10 @@ allergyFilter.querySelectorAll(".input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
 
-    if (checkboxesAllergy.length == 0) {
-      document.getElementById("allergy").classList.add("filter-dropdown_main");
-      document
-        .getElementById("allergy")
-        .classList.remove("filter-dropdown_orange");
+    if (!checkboxesAllergy.length == 0) {
+      addClass("allergy");
     } else {
-      document
-        .getElementById("allergy")
-        .classList.remove("filter-dropdown_main");
-      document
-        .getElementById("allergy")
-        .classList.add("filter-dropdown_orange");
+      removeClass("allergy");
     }
   });
 });
@@ -282,30 +280,28 @@ dietFilter.querySelectorAll(".input").forEach((input) => {
       "input[type=checkbox]:checked"
     );
     console.log(checkboxesDiet);
-    if (checkboxesDiet.length == 0) {
-      document.getElementById("diet").classList.add("filter-dropdown_main");
-      document
-        .getElementById("diet")
-        .classList.remove("filter-dropdown_orange");
+    if (!checkboxesDiet.length == 0) {
+      addClass("diet");
     } else {
-      document.getElementById("diet").classList.remove("filter-dropdown_main");
-      document.getElementById("diet").classList.add("filter-dropdown_orange");
+      removeClass("diet");
     }
   });
 });
 
+const addClass = (x) => {
+  document.getElementById(x).classList.add("filter-dropdown_orange");
+};
+
+const removeClass = (x) => {
+  document.getElementById(x).classList.remove("filter-dropdown_orange");
+};
+
 minCal.addEventListener("change", () => {
   calories.from = minCal.value;
   if (!minCal.value == "") {
-    document
-      .getElementById("calories")
-      .classList.remove("filter-dropdown_main");
-    document.getElementById("calories").classList.add("filter-dropdown_orange");
+    addClass("calories");
   } else {
-    document.getElementById("calories").classList.add("filter-dropdown_main");
-    document
-      .getElementById("calories")
-      .classList.remove("filter-dropdown_orange");
+    removeClass("calories");
   }
 });
 
@@ -313,7 +309,6 @@ const filterCalMin = () => {
   console.log(minCal.value);
   recipes = recipes.filter((item) => item.recipe.calories > minCal.value);
   console.log(recipes);
-  getRecipes();
   setRecipes();
 };
 
@@ -321,30 +316,23 @@ minCal.addEventListener("keyup", (event) => {
   if (event.code === "Enter") {
     if (!minCal.value == "") {
       filterCalMin();
+    } else {
+      getData();
     }
-  } else {
-    getData();
   }
 });
 
 maxCal.addEventListener("change", () => {
   calories.to = maxCal.value;
   if (!maxCal.value == "") {
-    document
-      .getElementById("calories")
-      .classList.remove("filter-dropdown_main");
-    document.getElementById("calories").classList.add("filter-dropdown_orange");
+    addClass("calories");
   } else {
-    document.getElementById("calories").classList.add("filter-dropdown_main");
-    document
-      .getElementById("calories")
-      .classList.remove("filter-dropdown_orange");
+    removeClass("calories");
   }
 });
 const filterCalMax = () => {
   recipes = recipes.filter((item) => item.recipe.calories < maxCal.value);
   console.log(recipes);
-  getRecipes();
   setRecipes();
 };
 
@@ -352,9 +340,9 @@ maxCal.addEventListener("keyup", (event) => {
   if (event.code === "Enter") {
     if (!maxCal.value == "") {
       filterCalMax();
+    } else {
+      getData();
     }
-  } else {
-    getData();
   }
 });
 
@@ -364,10 +352,9 @@ const clearFilters = () => {
   inputs.forEach((input) => {
     input.checked = "";
   });
-  filterDropdownButtons.forEach((button) => {
-    button.classList.remove("filter-dropdown_orange");
-    button.classList.add("filter-dropdown_main");
-  });
+  removeClass("calories");
+  removeClass("diet");
+  removeClass("allergy");
   if (!headerInput.value == "") {
     replaceSearch();
     url = `https://api.edamam.com/api/recipes/v2?type=public&dishType=Main%20course&app_id=f1dc740d&app_key=3ccb371b4e1b48ffdecb96d49d3cb192&q=${requestArr.join(
