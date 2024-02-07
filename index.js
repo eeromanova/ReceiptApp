@@ -226,6 +226,9 @@ filtersContainer.querySelectorAll(".input").forEach((input) => {
       console.log(url);
       getData();
       sliceSearchUrl("q");
+      minCal.value = "";
+    maxCal.value = "";
+    removeClass("calories");
     } else {
       if (
         input.value == "balanced" ||
