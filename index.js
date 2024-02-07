@@ -365,9 +365,8 @@ const clearFilters = () => {
   }
   console.log(url);
   getData();
-  replaceSearch();
-  joinSearchUrl();
   sliceSearchUrl("q");
+  console.log(url);
 };
 
 clearButton.addEventListener("click", clearFilters);
