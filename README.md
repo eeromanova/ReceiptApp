@@ -37,9 +37,15 @@
 <a href="https://www.figma.com/file/tsLHwnxsQmqOUdh9qFL9B0/YouMeal-(Copy)?type=design&node-id=57-2203&mode=design&t=cHzZrpxgMFIvyRXR-0">Figma</a>
 
 ### Collaboraters
+<p>
+  <a href="https://github.com/lenaanohina">ElenaAnohina</a>
+</p>
+<p>
+  <a href="https://github.com/Anna-Lazakovich">AnnaLazakovich</a>
+</p>
+<p>
+  <a href="https://github.com/diloytd">Diana</a>
+</p>
 
-<a href="https://github.com/lenaanohina">ElenaAnohina</a>
-<a href="https://github.com/Anna-Lazakovich">AnnaLazakovich</a>
-<a href="https://github.com/diloytd">Diana</a>
 
 
